@@ -5,6 +5,8 @@ import { GanttChart } from "lucide-react";
 import Sidebar from "./SideBar";
 import AuthBtns from "./AuthBtns";
 import SearchBtn from "./SearchBtn";
+import gearsLogo from "@/assets/gear-logo.svg";
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -13,10 +15,12 @@ const Header = () => {
         <div className="flex gap-6">
           <Link
             href={"/"}
-            className="flex items-center scroll-m-20 text-xl font-bold tracking-tight transition-colors first:mt-0"
+            className="flex gap-1 items-center scroll-m-20 text-xl font-bold tracking-tight transition-colors first:mt-0"
           >
-            <GanttChart />
-            think<span className="text-[#FACC15]">sync</span>
+            <Image src={gearsLogo} alt="gears-logl" className="max-w-[30px]" />
+            <div>
+              think<span className="text-[#FACC15]">sync</span>
+            </div>
           </Link>
           <div className="hidden md:block">
             <NavMenu />
