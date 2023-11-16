@@ -1,4 +1,5 @@
 import { Button } from "../ui/button";
+import HeroBtns from "./HeroBtns";
 
 export const headingGradient =
   "text-transparent bg-clip-text bg-gradient-to-b from-[#242424] via-gray-600 to-gray-700 dark:from-gray-100 dark:to-gray-400 pb-2";
@@ -17,8 +18,7 @@ const Hero = () => {
           your tech skills and career aspirations.
         </p>
         <div className="place-self-center flex gap-3">
-          <Button>Get started</Button>
-          <Button variant={"secondary"}>Threads</Button>
+          <HeroBtns />
         </div>
       </div>
     </div>
