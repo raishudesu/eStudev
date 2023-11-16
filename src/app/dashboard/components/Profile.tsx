@@ -13,7 +13,7 @@ import { Share2 } from "lucide-react";
 
 const Profile = () => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-6">
       <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
         Your Profile
       </h4>
@@ -42,12 +42,17 @@ const Profile = () => {
           <Link href={""} className="text-blue-500">
             www.johndoe.com
           </Link>
-          <div className="flex gap-3">
-            <Button className="self-start">Create thread</Button>
-            <Button variant={"secondary"} className="self-start">
+          <div className="flex flex-col md:flex-row gap-3">
+            <Button className="self-stretch md:self-start">
+              Create thread
+            </Button>
+            <Button
+              variant={"secondary"}
+              className="self-stretch md:self-start"
+            >
               Edit profile
             </Button>
-            <Button variant={"ghost"} className="self-start">
+            <Button variant={"outline"} className="self-stretch md:self-start">
               <Share2 size={15} />
             </Button>
           </div>

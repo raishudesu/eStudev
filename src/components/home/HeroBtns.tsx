@@ -7,8 +7,17 @@ const HeroBtns = () => {
   const router = useRouter();
   return (
     <>
-      <Button onClick={() => router.push("/sign-in")}>Get started</Button>
-      <Button onClick={() => router.push("/threads")} variant={"secondary"}>
+      <Button
+        className="self-stretch md:self-start"
+        onClick={() => router.push("/sign-in")}
+      >
+        Get started
+      </Button>
+      <Button
+        className="self-stretch md:self-start"
+        onClick={() => router.push("/threads")}
+        variant={"secondary"}
+      >
         Threads
       </Button>
     </>

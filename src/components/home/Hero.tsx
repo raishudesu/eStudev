@@ -17,7 +17,7 @@ const Hero = () => {
           Discover a supportive network of peers and professionals to elevate
           your tech skills and career aspirations.
         </p>
-        <div className="place-self-center flex gap-3">
+        <div className="w-full flex flex-col md:flex-row items-center justify-center gap-3">
           <HeroBtns />
         </div>
       </div>
