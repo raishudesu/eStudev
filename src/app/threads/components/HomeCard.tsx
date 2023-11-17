@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import React from "react";
+import HomeCardBtns from "./HomeCardBtns";
 
 const HomeCard = () => {
   return (
@@ -20,10 +21,7 @@ const HomeCard = () => {
       </CardHeader>
       <CardContent className="flex flex-col gap-6">
         <div className="flex flex-col md:flex-row gap-3">
-          <Button className="self-stretch md:self-start">Create thread</Button>
-          <Button className="self-stretch md:self-start" variant={"secondary"}>
-            Dashboard
-          </Button>
+          <HomeCardBtns />
         </div>
       </CardContent>
     </Card>

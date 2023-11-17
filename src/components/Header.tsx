@@ -7,6 +7,7 @@ import AuthBtns from "./AuthBtns";
 import SearchBtn from "./SearchBtn";
 import gearsLogo from "@/assets/gear-logo.svg";
 import Image from "next/image";
+import UserDropdown from "./UserDropdown";
 
 const Header = () => {
   return (
@@ -28,9 +29,11 @@ const Header = () => {
         </div>
         <div className="hidden md:flex gap-3 items-center">
           <SearchBtn />
+          <UserDropdown />
           <AuthBtns />
           <ModeToggle />
         </div>
+
         <div className="md:hidden">
           <Sidebar />
         </div>
