@@ -18,7 +18,7 @@ type TThreadCard = {
 
 const ViewThreadCard = ({ title, categories, content }: TThreadCard) => {
   return (
-    <Card className="w-full md:col-span-2">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
           {title}

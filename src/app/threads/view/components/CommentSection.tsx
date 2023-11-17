@@ -26,11 +26,11 @@ const sampleComments = [
 
 const CommentSection = () => {
   return (
-    <>
+    <div className="grid lg:grid-cols-2 gap-6">
       {sampleComments.map(({ author, content }, index) => (
         <CommentCard key={index} author={author} content={content} />
       ))}
-    </>
+    </div>
   );
 };
 

@@ -40,7 +40,7 @@ const ViewThread = () => {
   return (
     <div className="w-full max-w-screen-xl flex flex-col gap-6">
       <div className="mt-8 w-full flex flex-col-reverse lg:grid grid-cols-3 gap-6 items-start">
-        <div className="w-full col-span-2 grid gap-6 ">
+        <div className="w-full col-span-2 flex flex-col gap-6 ">
           <ViewThreadCard
             title={sample.title}
             categories={sample.categories}
