@@ -10,6 +10,37 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+export const filters = [
+  {
+    item: "All",
+    value: "all",
+  },
+  {
+    item: "Discussion",
+    value: "discussion",
+  },
+  {
+    item: "Problem",
+    value: "problem",
+  },
+  {
+    item: "Project Showcase",
+    value: "showcase",
+  },
+  {
+    item: "Question",
+    value: "question",
+  },
+  {
+    item: "Rant",
+    value: "rant",
+  },
+  {
+    item: "Resource",
+    value: "resource",
+  },
+];
+
 const Filter = () => {
   return (
     <Select>
@@ -19,13 +50,11 @@ const Filter = () => {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Categories</SelectLabel>
-          <SelectItem value="all">All</SelectItem>
-          <SelectItem value="discussion">Discussion</SelectItem>
-          <SelectItem value="problem">Problem</SelectItem>
-          <SelectItem value="showcase">Project Showcase</SelectItem>
-          <SelectItem value="question">Question</SelectItem>
-          <SelectItem value="rant">Rant</SelectItem>
-          <SelectItem value="resource">Resource</SelectItem>
+          {filters.map(({ item, value }, index) => (
+            <SelectItem key={index} value={value}>
+              {item}
+            </SelectItem>
+          ))}
         </SelectGroup>
       </SelectContent>
     </Select>

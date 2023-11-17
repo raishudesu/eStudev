@@ -1,22 +1,27 @@
 import React from "react";
-import Profile from "./components/Profile";
-import Threads from "./components/Threads";
+import { threads } from "@/lib/data";
+import ThreadCard from "./components/ThreadCard";
+import Filter from "../threads/components/Filter";
 
-const DashboardPage = () => {
+const Threads = () => {
   return (
-    <section className="w-full flex flex-col justify-center items-center gap-6 mt-6">
-      <div className="w-full max-w-screen-xl">
-        <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-          Dashboard
-        </h2>
-
-        <div className="mt-8 w-full flex flex-col-reverse lg:grid grid-cols-3 gap-6 items-start">
-          <Threads />
-          <Profile />
-        </div>
+    <div className="grid gap-6 col-span-2">
+      <div className="flex justify-between items-center flex-wrap">
+        <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          Your threads
+        </h4>
+        <Filter />
       </div>
-    </section>
+      {threads.map(({ title, categories, content }, index) => (
+        <ThreadCard
+          key={index}
+          title={title}
+          categories={categories}
+          content={content}
+        />
+      ))}
+    </div>
   );
 };
 
-export default DashboardPage;
+export default Threads;

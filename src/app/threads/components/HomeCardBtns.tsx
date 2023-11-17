@@ -9,7 +9,7 @@ const HomeCardBtns = () => {
   return (
     <>
       <Button
-        onClick={() => router.push("/threads/create")}
+        onClick={() => router.push("/dashboard/create-thread")}
         className="self-stretch md:self-start"
       >
         Create thread

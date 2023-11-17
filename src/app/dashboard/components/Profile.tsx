@@ -1,3 +1,5 @@
+"use client";
+
 import maleAvatar from "@/assets/male-avatar.svg";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,15 +12,24 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Share2 } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import ProfileBtns from "./ProfileBtns";
 
 const Profile = () => {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const displayCard = () => {
+    if (pathname === "/dashboard/create-thread") return "hidden lg:block";
+    return null;
+  };
   return (
-    <div className="w-full flex flex-col gap-6">
-      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-        Your Profile
-      </h4>
+    <div className={`${displayCard()} w-full flex flex-col gap-6`}>
       <Card className="w-full">
         <CardHeader className="flex flex-col">
+          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+            Your Profile
+          </h4>
           <Image
             src={maleAvatar}
             alt="male-avatar"
@@ -43,18 +54,7 @@ const Profile = () => {
             www.johndoe.com
           </Link>
           <div className="flex flex-col md:flex-row gap-3">
-            <Button className="self-stretch md:self-start">
-              Create thread
-            </Button>
-            <Button
-              variant={"secondary"}
-              className="self-stretch md:self-start"
-            >
-              Edit profile
-            </Button>
-            <Button variant={"outline"} className="self-stretch md:self-start">
-              <Share2 size={15} />
-            </Button>
+            <ProfileBtns />
           </div>
           <div className="flex gap-6">
             <small className=" text-sm font-medium leading-none">

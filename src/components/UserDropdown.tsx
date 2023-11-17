@@ -42,7 +42,10 @@ const UserDropdown = () => {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href={"/threads/create"} className="w-full flex items-center">
+            <Link
+              href={"/dashboard/create-thread"}
+              className="w-full flex items-center"
+            >
               <PenSquare className="mr-2 h-4 w-4" />
               Create thread
             </Link>
