@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Star, Share2, MessageCircle, BookMarked } from "lucide-react";
+import Link from "next/link";
 
 type TThreadCard = {
   title: string;
@@ -20,7 +21,9 @@ const ThreadCard = ({ title, categories, content }: TThreadCard) => {
     <Card>
       <CardHeader>
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
-          {title}
+          <Link href={"/threads/view"} className="hover:underline">
+            {title}
+          </Link>
         </CardTitle>
         <CardDescription className="leading-7">
           Posted by John Doe 8hrs ago
