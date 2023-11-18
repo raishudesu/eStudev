@@ -1,6 +1,4 @@
-"use client";
-
-import { LogOut, PenSquare, Settings, User } from "lucide-react";
+import { PenSquare, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,17 +12,14 @@ import {
 import AvatarIcon from "./AvatarIcon";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
-import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
+import SignoutBtn from "./SignoutBtn";
+import { authOptions } from "@/lib/auth";
 
-const UserDropdown = () => {
-  //   const session = await getServerSession();
+const UserDropdown = async () => {
+  const session = await getServerSession(authOptions);
 
-  //   if (!session) return null;
+  if (!session) return null;
 
-  const pathname = usePathname();
-
-  if (pathname === "/") return null;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -60,14 +55,7 @@ const UserDropdown = () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link
-            href={""}
-            className="w-full flex items-center"
-            onClick={() => signOut()}
-          >
-            <LogOut className="mr-2 h-4 w-4" />
-            Sign out
-          </Link>
+          <SignoutBtn />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -55,6 +55,7 @@ const SignInForm = () => {
       if (res?.ok) {
         toaster("Success!", "Signed in successfully", "default");
         router.push("/dashboard");
+        router.refresh();
       } else {
         toaster("Something went wrong.", res?.error as string, "destructive");
       }

@@ -28,19 +28,25 @@ export const authOptions: NextAuthOptions = {
             where: { email: credentials?.email },
           });
 
-          if (!existingUser) return null;
+          if (!existingUser)
+            throw new Error(
+              "Either email is incorrect or the account doesn't exist"
+            );
 
           const passwordMatched = await compare(
             credentials?.password,
             existingUser?.password
           );
 
-          if (!passwordMatched) return null;
+          if (!passwordMatched) throw new Error("Incorrect password");
 
           return {
             id: `${existingUser.id}`,
             username: existingUser.username,
             email: existingUser.email,
+            bio: existingUser.bio,
+            links: existingUser.links,
+            error: null,
           };
         } catch (error) {
           throw error;
@@ -55,6 +61,8 @@ export const authOptions: NextAuthOptions = {
           ...token,
           username: user.username,
           id: user.id,
+          bio: user.bio,
+          links: user.links,
         };
       }
       return token;
@@ -66,6 +74,8 @@ export const authOptions: NextAuthOptions = {
           ...session.user,
           username: token.username,
           id: token.id,
+          bio: token.bio,
+          links: token.links,
         },
       };
     },

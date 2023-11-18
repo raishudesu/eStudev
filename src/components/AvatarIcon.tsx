@@ -1,17 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
 const AvatarIcon = async () => {
-  // const session = await getServerSession();
-  // const username = session?.user?.name;
+  const session = await getServerSession(authOptions);
+  const username = session?.user.username;
 
-  // const getFirstChar = () => {
-  //   return username?.charAt(0);
-  // };
+  const getFirstChar = () => {
+    return username?.charAt(0).toUpperCase();
+  };
   return (
     <Avatar>
       <AvatarImage />
-      <AvatarFallback>TS</AvatarFallback>
+      <AvatarFallback>{getFirstChar()}</AvatarFallback>
     </Avatar>
   );
 };
