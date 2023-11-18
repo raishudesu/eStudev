@@ -63,7 +63,7 @@ model User {
   username  String    @unique
   email     String    @unique
   gender    String
-  bio       String
+  bio       String?
   links     String[]
   followers Follows[] @relation("follower")
   following Follows[] @relation("following")
