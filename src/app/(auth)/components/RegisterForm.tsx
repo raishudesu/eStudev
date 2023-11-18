@@ -24,17 +24,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       username: "",
       email: "",
+      gender: "",
       password: "",
       confirmPassword: "",
     },
   });
+
+  const { formState } = form;
+
+  const toaster = (
+    title: string,
+    msg: string,
+    type: "default" | "destructive" | null | undefined
+  ) => {
+    toast({
+      variant: type,
+      title: title,
+      description: msg,
+    });
+  };
 
   const onSubmit = async (values: z.infer<typeof registerSchema>) => {
     try {
@@ -46,14 +65,21 @@ const RegisterForm = () => {
         body: JSON.stringify({
           username: values.username,
           email: values.email,
+          gender: values.gender,
           password: values.password,
         }),
       });
       const data = await res.json();
-      console.log(data);
-      return data;
+
+      if (data.user) {
+        toaster("Registered successfully.", "You can now sign in.", "default");
+        form.reset();
+        router.push("/sign-in");
+      } else {
+        toaster("Something went wrong.", data.message, "destructive");
+      }
     } catch (error) {
-      console.log(error);
+      toaster("Something went wrong.", error as string, "destructive");
     }
   };
 
@@ -68,7 +94,11 @@ const RegisterForm = () => {
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input placeholder="JohnDoe" {...field} />
+                  <Input
+                    placeholder="JohnDoe"
+                    {...field}
+                    disabled={formState.isSubmitting}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -81,7 +111,11 @@ const RegisterForm = () => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="johndoe@example.com" {...field} />
+                  <Input
+                    placeholder="johndoe@example.com"
+                    {...field}
+                    disabled={formState.isSubmitting}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,9 +137,9 @@ const RegisterForm = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="Male">Male</SelectItem>
-                    <SelectItem value="Female">Female</SelectItem>
-                    <SelectItem value="RatherNotSay">Rather not say</SelectItem>
+                    <SelectItem value="male">Male</SelectItem>
+                    <SelectItem value="female">Female</SelectItem>
+                    <SelectItem value="ratherNotSay">Rather not say</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -123,6 +157,7 @@ const RegisterForm = () => {
                     type="password"
                     placeholder="Enter your password"
                     {...field}
+                    disabled={formState.isSubmitting}
                   />
                 </FormControl>
                 <FormMessage />
@@ -140,6 +175,7 @@ const RegisterForm = () => {
                     placeholder="Confirm your password"
                     type="password"
                     {...field}
+                    disabled={formState.isSubmitting}
                   />
                 </FormControl>
                 <FormMessage />
@@ -147,8 +183,12 @@ const RegisterForm = () => {
             )}
           />
         </div>
-        <Button className="w-full mt-6" type="submit">
-          Sign in
+        <Button
+          className="w-full mt-6"
+          type="submit"
+          disabled={formState.isSubmitting}
+        >
+          Register
         </Button>
       </form>
       <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
