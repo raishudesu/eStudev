@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 import NavMenu from "./NavMenu";
-import { GanttChart } from "lucide-react";
 import Sidebar from "./SideBar";
-import AuthBtns from "./AuthBtns";
 import SearchBtn from "./SearchBtn";
 import gearsLogo from "@/assets/gear-logo.svg";
 import Image from "next/image";
 import UserDropdown from "./UserDropdown";
+import ShowAuthBtns from "./ShowAuthBtns";
 
 const Header = () => {
   return (
@@ -30,7 +29,7 @@ const Header = () => {
         <div className="hidden md:flex gap-3 items-center">
           <SearchBtn />
           <UserDropdown />
-          <AuthBtns />
+          <ShowAuthBtns />
           <ModeToggle />
         </div>
         <div className="md:hidden flex items-center gap-3">

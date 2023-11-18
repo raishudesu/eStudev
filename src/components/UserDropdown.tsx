@@ -15,6 +15,7 @@ import AvatarIcon from "./AvatarIcon";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 const UserDropdown = () => {
   //   const session = await getServerSession();
@@ -59,7 +60,11 @@ const UserDropdown = () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href={"/settings"} className="w-full flex items-center">
+          <Link
+            href={""}
+            className="w-full flex items-center"
+            onClick={() => signOut()}
+          >
             <LogOut className="mr-2 h-4 w-4" />
             Sign out
           </Link>

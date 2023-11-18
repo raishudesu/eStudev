@@ -17,8 +17,12 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { signinSchema } from "@/lib/zod";
 import { Separator } from "@/components/ui/separator";
+import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const SignInForm = () => {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof signinSchema>>({
     resolver: zodResolver(signinSchema),
     defaultValues: {
@@ -27,13 +31,38 @@ const SignInForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof signinSchema>) => {
-    const res = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false,
+  const { formState } = form;
+
+  const toaster = (
+    title: string,
+    msg: string,
+    type: "default" | "destructive" | null | undefined
+  ) => {
+    toast({
+      variant: type,
+      title: title,
+      description: msg,
     });
-    console.log(res);
+  };
+
+  const onSubmit = async (values: z.infer<typeof signinSchema>) => {
+    try {
+      const res = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+      });
+      if (res?.ok) {
+        toaster("Success!", "Signed in successfully", "default");
+        router.push("/dashboard");
+      } else {
+        toaster("Something went wrong.", res?.error as string, "destructive");
+      }
+
+      console.log(res);
+    } catch (error) {
+      toaster("Something went wrong.", error as string, "destructive");
+    }
   };
 
   return (
@@ -47,7 +76,11 @@ const SignInForm = () => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="student@example.com" {...field} />
+                  <Input
+                    placeholder="student@example.com"
+                    {...field}
+                    disabled={formState.isSubmitting}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -64,6 +97,7 @@ const SignInForm = () => {
                     type="password"
                     placeholder="Enter your password"
                     {...field}
+                    disabled={formState.isSubmitting}
                   />
                 </FormControl>
                 <FormMessage />
@@ -77,7 +111,11 @@ const SignInForm = () => {
         >
           Forgot password?
         </Link>
-        <Button className="w-full mt-6" type="submit">
+        <Button
+          className="w-full mt-6"
+          type="submit"
+          disabled={formState.isSubmitting}
+        >
           Sign in
         </Button>
       </form>
