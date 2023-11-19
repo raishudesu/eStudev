@@ -1,4 +1,4 @@
-import ThreadMd from "@/app/threads/view/components/ThreadMd";
+import ThreadMd from "@/app/threads/view/[id]/components/ThreadMd";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -12,6 +12,7 @@ import { Star, Share2, MessageCircle, BookMarked } from "lucide-react";
 import Link from "next/link";
 
 type TThreadCard = {
+  id: string;
   title: string;
   categories: string[];
   content: string;
@@ -19,6 +20,7 @@ type TThreadCard = {
 };
 
 const ThreadCard = ({
+  id,
   title,
   categories,
   content,
@@ -28,7 +30,7 @@ const ThreadCard = ({
     <Card className="w-full border-2 overflow-x-auto">
       <CardHeader>
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
-          <Link href={"/threads/view"} className="hover:underline">
+          <Link href={`/threads/view/${id}`} className="hover:underline">
             {title}
           </Link>
         </CardTitle>

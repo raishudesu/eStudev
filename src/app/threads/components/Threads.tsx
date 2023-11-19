@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getThreads } from "@/stores/threads";
 import { useQuery } from "@tanstack/react-query";
 import { TThread } from "@/types/types";
-import { TextSkeletons } from "@/components/Skeletons";
+import { CardSkeletons, TextSkeletons } from "@/components/Skeletons";
 
 const Threads = () => {
   const { isLoading, isSuccess, data } = useQuery({
@@ -32,10 +32,11 @@ const Threads = () => {
       {!isLoading && isSuccess ? (
         data.threads.map(
           (
-            { title, category, content, authorName }: TThread,
+            { id, title, category, content, authorName }: TThread,
             index: number
           ) => (
             <ThreadCard
+              id={id}
               key={index}
               title={title}
               categories={category}
@@ -45,7 +46,11 @@ const Threads = () => {
           )
         )
       ) : (
-        <TextSkeletons />
+        <>
+          <CardSkeletons />
+          <CardSkeletons />
+          <CardSkeletons />
+        </>
       )}
     </div>
   );

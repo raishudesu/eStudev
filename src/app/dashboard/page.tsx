@@ -25,11 +25,12 @@ const Threads = () => {
       {!isLoading ? (
         data.threads.map(
           (
-            { title, category, content, authorName }: TThread,
+            { id, title, category, content, authorName }: TThread,
             index: number
           ) => (
             <ThreadCard
               key={index}
+              id={id}
               title={title}
               categories={category}
               content={content}
