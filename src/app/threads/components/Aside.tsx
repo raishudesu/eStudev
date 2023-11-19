@@ -4,7 +4,7 @@ import Ranking from "./Ranking";
 
 const Aside = () => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-6">
       <HomeCard />
       <Ranking />
       <SubFooter />

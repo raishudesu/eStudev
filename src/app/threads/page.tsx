@@ -8,7 +8,7 @@ const ThreadsPage = () => {
         Threads
       </h2>
 
-      <div className="mt-8 w-full flex flex-col-reverse md:grid grid-cols-2 gap-6 items-start">
+      <div className="mt-8 w-full flex flex-col-reverse lg:grid grid-cols-3 gap-6 items-start">
         <Threads />
         <Aside />
       </div>

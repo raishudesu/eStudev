@@ -9,7 +9,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           Dashboard
         </h2>
 
-        <div className="mt-8 w-full flex flex-col-reverse lg:grid grid-cols-3 gap-6 items-start">
+        <div className="mt-8 w-full flex flex-col-reverse lg:grid grid-cols-3 gap-6">
           {children}
           <Profile />
         </div>

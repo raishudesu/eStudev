@@ -29,9 +29,7 @@ const ViewThreadCard = ({ title, categories, content }: TThreadCard) => {
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
         <Badge>{categories}</Badge>
-        <div className="w-full">
-          <ThreadMd content={content} />
-        </div>
+        <ThreadMd content={content} />
       </CardContent>
       <CardFooter className="flex gap-6">
         <div className="flex items-center gap-1 text-sm font-medium leading-none">

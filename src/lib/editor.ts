@@ -57,7 +57,7 @@ export const modules = {
 
   toolbar: [
     ["bold", "italic", "underline", "strike"], // toggled buttons
-    ["blockquote", "code-block"],
+    ["blockquote"],
 
     [{ header: 1 }, { header: 2 }], // custom button values
     [{ list: "ordered" }, { list: "bullet" }],

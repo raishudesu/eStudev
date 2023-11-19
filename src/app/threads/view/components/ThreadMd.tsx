@@ -10,7 +10,7 @@ const ThreadMd = ({ content }: { content: string }) => {
   const syntaxHighlighterRef = useRef<SyntaxHighlighter | null>(null);
   return (
     <Markdown
-      className={"whitespace-pre-wrap"}
+      className={"whitespace-pre-wrap break-all w-full"}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
       components={{

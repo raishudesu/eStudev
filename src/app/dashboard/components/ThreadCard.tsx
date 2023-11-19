@@ -25,7 +25,7 @@ const ThreadCard = ({
   authorName,
 }: TThreadCard) => {
   return (
-    <Card className="col-span-2">
+    <Card className="w-full border-2 overflow-x-auto">
       <CardHeader>
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
           <Link href={"/threads/view"} className="hover:underline">
@@ -33,16 +33,16 @@ const ThreadCard = ({
           </Link>
         </CardTitle>
         <CardDescription className="leading-7">
-          Posted by {authorName} 8hrs ago
+          Posted by {authorName}
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col gap-3 items-start">
+      <CardContent className=" w-full flex flex-col gap-3 items-start">
         <Badge>{categories}</Badge>
-        {/* <p className="leading-7">{content}</p> */}
 
-        <div className="max-h-96 overflow-hidden">
+        <div className="max-h-32 overflow-hidden">
           <ThreadMd content={content} />
         </div>
+
         <Link
           href={"/threads/view"}
           className="text-blue-500 text-sm hover:underline"
