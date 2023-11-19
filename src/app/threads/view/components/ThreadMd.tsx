@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -11,6 +12,7 @@ const ThreadMd = ({ content }: { content: string }) => {
     <Markdown
       className={"whitespace-pre-wrap"}
       remarkPlugins={[remarkGfm]}
+      rehypePlugins={[rehypeRaw]}
       components={{
         code(props) {
           const { children, className, node, ...rest } = props;

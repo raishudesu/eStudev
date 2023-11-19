@@ -50,3 +50,20 @@ export const signinSchema = z.object({
     .string({ required_error: "Password is required" })
     .min(6, { message: "Password should be at least 6 characters long" }),
 });
+
+export const threadSchema = z.object({
+  title: z
+    .string({ required_error: "Title is required" })
+    .min(2, {
+      message: "Title must be at least 3 characters.",
+    })
+    .max(125, { message: "Title must be less than 125 characters" }),
+  category: z.string({
+    required_error: "Please select a category.",
+  }),
+  content: z.string({ required_error: "Content is required" }).min(15, {
+    message: "Content must be at least 15 characters.",
+  }),
+  authorId: z.number(),
+  authorName: z.string(),
+});

@@ -13,6 +13,9 @@ const Editor = ({ ...field }) => {
     () => dynamic(() => import("react-quill"), { ssr: false }),
     []
   );
+
+  // STILL FINDING WAYS TO DYNAMICALLY IMPORT THESE METHODS
+
   //   Quill.register("modules/imageFormats", ImageFormats);
   //   Quill.register("modules/imageResize", ImageResize);
   return (

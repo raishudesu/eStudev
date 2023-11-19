@@ -23,39 +23,87 @@ import {
 import { filters } from "@/app/threads/components/Filter";
 
 import Editor from "./Editor";
+import { threadSchema } from "@/lib/zod";
+import { useSession } from "next-auth/react";
+import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
-const threadSchema = z.object({
-  title: z
-    .string({ required_error: "Title is required" })
-    .min(2, {
-      message: "Title must be at least 3 characters.",
-    })
-    .max(125, { message: "Title must be less than 125 characters" }),
-  category: z.string({
-    required_error: "Please select a category.",
-  }),
-  content: z.string({ required_error: "Content is required" }).min(15, {
-    message: "Content must be at least 15 characters.",
-  }),
-});
+import "react-quill/dist/quill.snow.css";
+import { formats, modules } from "@/lib/editor";
+import { forwardRef, useCallback, useMemo, useRef } from "react";
+import dynamic from "next/dynamic";
 
 const ThreadForm = () => {
-  // ...
+  const session = useSession();
+  const router = useRouter();
+  const user = session.data?.user;
+
+  const ReactQuill = useMemo(
+    () => dynamic(() => import("react-quill"), { ssr: false }),
+    []
+  );
+
   const form = useForm<z.infer<typeof threadSchema>>({
     resolver: zodResolver(threadSchema),
     defaultValues: {
       title: "",
-      category: "",
+      // category: "",
       content: "",
+      authorId: Number(user?.id),
+      authorName: user?.username,
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof threadSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  const { setValue } = form;
+
+  const toaster = (
+    title: string,
+    msg: string,
+    type: "default" | "destructive" | null | undefined
+  ) => {
+    toast({
+      variant: type,
+      title: title,
+      description: msg,
+    });
+  };
+
+  async function onSubmit(values: z.infer<typeof threadSchema>) {
+    try {
+      const res = await fetch("/api/threads", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          title: values.title,
+          category: values.category,
+          content: values.content,
+          authorId: Number(user?.id),
+          authorName: user?.username,
+        }),
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        toaster("Post", "Your thread can now be viewed", "default");
+        form.reset();
+        router.push("/dashboard");
+      } else {
+        toaster("Something went wrong.", data.message, "destructive");
+      }
+    } catch (error) {
+      toaster("Something went wrong.", error as string, "destructive");
+    }
   }
+
+  const handleQuillChange = useCallback(
+    (content: string) => {
+      setValue("content", content); // Update the 'content' value in the form
+    },
+    [setValue]
+  );
+
   return (
     <Form {...form}>
       <form
@@ -109,14 +157,13 @@ const ThreadForm = () => {
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                {/* <ReactQuill
+                <ReactQuill
                   formats={formats}
                   modules={modules}
-                  {...field}
                   theme="snow"
-                  className="w-full break-all"
-                /> */}
-                <Editor {...field} />
+                  className="w-full"
+                  onChange={handleQuillChange}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
