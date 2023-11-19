@@ -3,19 +3,16 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -25,7 +22,9 @@ import {
 } from "@/components/ui/select";
 import { filters } from "@/app/threads/components/Filter";
 
-const formSchema = z.object({
+import Editor from "./Editor";
+
+const threadSchema = z.object({
   title: z
     .string({ required_error: "Title is required" })
     .min(2, {
@@ -35,15 +34,15 @@ const formSchema = z.object({
   category: z.string({
     required_error: "Please select a category.",
   }),
-  content: z.string({ required_error: "Content is required" }).min(6, {
-    message: "Content must be at least 6 characters.",
+  content: z.string({ required_error: "Content is required" }).min(15, {
+    message: "Content must be at least 15 characters.",
   }),
 });
 
 const ThreadForm = () => {
   // ...
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof threadSchema>>({
+    resolver: zodResolver(threadSchema),
     defaultValues: {
       title: "",
       category: "",
@@ -52,7 +51,7 @@ const ThreadForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof threadSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
@@ -110,7 +109,14 @@ const ThreadForm = () => {
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                <Textarea placeholder="What's your thread about?" {...field} />
+                {/* <ReactQuill
+                  formats={formats}
+                  modules={modules}
+                  {...field}
+                  theme="snow"
+                  className="w-full break-all"
+                /> */}
+                <Editor {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

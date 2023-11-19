@@ -16,9 +16,6 @@ const CreateThread = () => {
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
           Create thread
         </CardTitle>
-        {/* <CardDescription className="leading-7">
-          Posted by John Doe 8hrs ago
-        </CardDescription> */}
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
         <ThreadForm />
