@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 const AuthLayout = async ({ children }: { children: ReactNode }) => {
   const session = await getServerSession();
-  if (session) redirect("/dashboard");
+  if (session) redirect("/threads");
   return (
     <section className="w-full flex flex-col justify-center items-center gap-6 mt-10 lg:mt-20">
       <div className="w-full max-w-screen-xl grid lg:grid-cols-2 justify-items-center items-center">
