@@ -58,9 +58,9 @@ const SignInForm = () => {
         if (searchParams) {
           router.push(query.get("callbackUrl") as string);
 
-          // THE DEFAULT REDIRECT TO DASHBOARD
+          // THE DEFAULT REDIRECT TO THREADS
         } else {
-          router.push("/dashboard");
+          router.push("/threads");
         }
 
         toaster("Success!", "Signed in successfully", "default");
