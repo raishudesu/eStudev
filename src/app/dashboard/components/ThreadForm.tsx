@@ -32,6 +32,7 @@ import { formats, modules } from "@/lib/editor";
 import { useCallback, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { filters } from "@/lib/data";
+import { createThread } from "@/stores/threads";
 
 const ThreadForm = () => {
   const session = useSession();
@@ -54,7 +55,7 @@ const ThreadForm = () => {
     },
   });
 
-  const { setValue } = form;
+  const { setValue, formState } = form;
 
   const toaster = (
     title: string,
@@ -70,25 +71,16 @@ const ThreadForm = () => {
 
   async function onSubmit(values: z.infer<typeof threadSchema>) {
     try {
-      const res = await fetch("/api/threads", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          title: values.title,
-          category: values.category,
-          content: values.content,
-          authorId: Number(user?.id),
-          authorName: user?.username,
-        }),
-      });
-      const data = await res.json();
+      const data = await createThread(
+        values,
+        user?.id as string,
+        user?.username as string
+      );
 
       if (data.ok) {
         toaster("Post", "Your thread can now be viewed", "default");
         form.reset();
-        router.push("/dashboard");
+        router.push("/threads");
       } else {
         toaster("Something went wrong.", data.message, "destructive");
       }
@@ -117,7 +109,11 @@ const ThreadForm = () => {
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="Your thread title goes here" {...field} />
+                <Input
+                  placeholder="Your thread title goes here"
+                  {...field}
+                  disabled={formState.isSubmitting}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -129,7 +125,11 @@ const ThreadForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Category</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                disabled={formState.isSubmitting}
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a category" />
@@ -169,7 +169,11 @@ const ThreadForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="md:self-start">
+        <Button
+          type="submit"
+          className="md:self-start"
+          disabled={formState.isSubmitting}
+        >
           Create
         </Button>
       </form>

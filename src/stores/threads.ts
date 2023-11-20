@@ -1,3 +1,32 @@
+import { threadSchema } from "@/lib/zod";
+import { z } from "zod";
+
+export const createThread = async (
+  { title, category, content }: z.infer<typeof threadSchema>,
+  id: string,
+  username: string
+) => {
+  try {
+    const res = await fetch("/api/threads", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        category: category,
+        content: content,
+        authorId: Number(id),
+        authorName: username,
+      }),
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getThreads = async () => {
   try {
     const res = await fetch("api/threads");

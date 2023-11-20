@@ -21,7 +21,10 @@ const ActionBtns = ({ id }: { id: number }) => {
       <DropdownMenuContent className="px-2 max-w-56">
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Link href={"/dashboard"} className="w-full flex items-center">
+            <Link
+              href={`/dashboard/edit-thread/${id}`}
+              className="w-full flex items-center"
+            >
               <Pencil className="mr-2 h-4 w-4" />
               Edit
             </Link>

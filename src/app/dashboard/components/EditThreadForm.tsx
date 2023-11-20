@@ -60,7 +60,7 @@ const EditThreadForm = ({ id }: { id: number }) => {
       content: "",
     },
   });
-  const { setValue, getValues } = form;
+  const { setValue, getValues, formState } = form;
 
   useEffect(() => {
     if (isSuccess && data.ok) {
@@ -130,7 +130,11 @@ const EditThreadForm = ({ id }: { id: number }) => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your thread title goes here" {...field} />
+                  <Input
+                    placeholder="Your thread title goes here"
+                    {...field}
+                    disabled={formState.isSubmitting}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -145,6 +149,7 @@ const EditThreadForm = ({ id }: { id: number }) => {
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={getValues("category")}
+                  disabled={formState.isSubmitting}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -186,7 +191,11 @@ const EditThreadForm = ({ id }: { id: number }) => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="md:self-start">
+          <Button
+            type="submit"
+            className="md:self-start"
+            disabled={formState.isSubmitting}
+          >
             Save
           </Button>
         </form>
