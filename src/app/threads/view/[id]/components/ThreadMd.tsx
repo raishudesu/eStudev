@@ -13,6 +13,7 @@ const ThreadMd = ({ content }: { content: string }) => {
       className={"whitespace-pre-wrap text-ellipsis overflow-hidden w-full"}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
+      skipHtml={true}
       components={{
         code(props) {
           const { children, className, node, ...rest } = props;

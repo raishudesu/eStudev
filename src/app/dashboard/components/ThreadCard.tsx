@@ -42,7 +42,8 @@ const ThreadCard = ({
         <Badge className="capitalize">{categories}</Badge>
 
         <div className="max-h-32 overflow-hidden">
-          <ThreadMd content={content} />
+          {/* <ThreadMd content={content} /> */}
+          <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
 
         <Link
