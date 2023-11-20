@@ -9,37 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-export const filters = [
-  {
-    item: "All",
-    value: "all",
-  },
-  {
-    item: "Discussion",
-    value: "discussion",
-  },
-  {
-    item: "Problem",
-    value: "problem",
-  },
-  {
-    item: "Project Showcase",
-    value: "showcase",
-  },
-  {
-    item: "Question",
-    value: "question",
-  },
-  {
-    item: "Rant",
-    value: "rant",
-  },
-  {
-    item: "Resource",
-    value: "resource",
-  },
-];
+import { filters } from "@/lib/data";
 
 const Filter = () => {
   return (

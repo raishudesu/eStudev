@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { signinSchema } from "@/lib/zod";
-import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 

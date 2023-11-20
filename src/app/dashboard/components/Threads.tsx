@@ -1,10 +1,9 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { CardSkeletons, TextSkeletons } from "@/components/Skeletons";
+import { CardSkeletons } from "@/components/Skeletons";
 import { getUserThreads } from "@/stores/threads";
 import { TThread } from "@/types/types";
-import { useSession } from "next-auth/react";
 import ThreadCard from "./ThreadCard";
 
 const Threads = ({ id }: { id: string }) => {

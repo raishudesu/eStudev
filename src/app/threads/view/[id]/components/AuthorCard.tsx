@@ -10,19 +10,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Share2 } from "lucide-react";
-import { getUser } from "@/stores/users";
-import { useQuery } from "@tanstack/react-query";
-import { ProfileSkeletons } from "@/components/Skeletons";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
-type TAuthor = {
-  id: string;
-  username: string;
-  email: string;
-  bio: string;
-  links: string[];
-};
+import { TAuthor } from "@/types/types";
 
 const AuthorCard = ({ author }: { author: TAuthor }) => {
   const session = useSession();

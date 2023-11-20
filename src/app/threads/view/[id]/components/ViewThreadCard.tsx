@@ -11,12 +11,6 @@ import { Star, Share2, MessageCircle, BookMarked } from "lucide-react";
 import ThreadMd from "./ThreadMd";
 import { TThread } from "@/types/types";
 
-// type TThreadCard = {
-//   title: string;
-//   categories: string[];
-//   content: string;
-// };
-
 const ViewThreadCard = ({ title, authorName, category, content }: TThread) => {
   return (
     <Card className="w-full">

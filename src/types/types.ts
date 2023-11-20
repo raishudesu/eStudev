@@ -11,3 +11,11 @@ export type TThread = {
   content: string;
   authorName: string;
 };
+
+export type TAuthor = {
+  id: string;
+  username: string;
+  email: string;
+  bio: string;
+  links: string[];
+};

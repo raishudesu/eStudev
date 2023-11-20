@@ -7,7 +7,6 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 
 const CommentArea = () => {
@@ -17,7 +16,6 @@ const CommentArea = () => {
       <CardContent className="flex flex-col gap-6">
         <div className="grid w-full gap-1.5">
           <Label>Your comment</Label>
-          {/* <Textarea placeholder="What are your thoughts?" id="message" /> */}
         </div>
         <Editor />
       </CardContent>

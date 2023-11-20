@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getThreads } from "@/stores/threads";
 import { useQuery } from "@tanstack/react-query";
 import { TThread } from "@/types/types";
-import { CardSkeletons, TextSkeletons } from "@/components/Skeletons";
+import { CardSkeletons } from "@/components/Skeletons";
 
 const Threads = () => {
   const { isFetching, isSuccess, data } = useQuery({

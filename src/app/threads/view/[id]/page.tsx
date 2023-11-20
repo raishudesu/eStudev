@@ -7,7 +7,6 @@ import CommentSection from "./components/CommentSection";
 import ViewThreadCard from "./components/ViewThreadCard";
 import { useQuery } from "@tanstack/react-query";
 import { CardSkeletons } from "@/components/Skeletons";
-import { useRouter } from "next/navigation";
 
 const ViewThread = ({ params }: { params: { id: string } }) => {
   const { isFetching, isSuccess, data } = useQuery({

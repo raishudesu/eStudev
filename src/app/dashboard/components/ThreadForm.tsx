@@ -20,7 +20,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { filters } from "@/app/threads/components/Filter";
 
 import Editor from "./Editor";
 import { threadSchema } from "@/lib/zod";
@@ -30,8 +29,9 @@ import { useRouter } from "next/navigation";
 
 import "react-quill/dist/quill.snow.css";
 import { formats, modules } from "@/lib/editor";
-import { forwardRef, useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo } from "react";
 import dynamic from "next/dynamic";
+import { filters } from "@/lib/data";
 
 const ThreadForm = () => {
   const session = useSession();
