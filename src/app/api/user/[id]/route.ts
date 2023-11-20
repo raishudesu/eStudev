@@ -18,6 +18,9 @@ export async function GET(req: Request, { params }: { params: Params }) {
       where: {
         authorId: Number(id),
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     return NextResponse.json({ ok: true, userThreads }, { status: 201 });

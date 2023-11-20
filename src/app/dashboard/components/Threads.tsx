@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 import ThreadCard from "./ThreadCard";
 
 const Threads = ({ id }: { id: string }) => {
-  const { isLoading, isSuccess, data } = useQuery({
+  const { isFetching, isSuccess, data } = useQuery({
     queryKey: ["threads"],
     queryFn: async () => {
       const data = await getUserThreads(id);
@@ -18,9 +18,9 @@ const Threads = ({ id }: { id: string }) => {
   });
   return (
     <>
-      {!isLoading ? (
-        data.userThreads.length !== 0 ? (
-          data.userThreads.map(
+      {!isFetching && isSuccess ? (
+        data?.userThreads.length !== 0 ? (
+          data?.userThreads.map(
             (
               { id, title, category, content, authorName }: TThread,
               index: number

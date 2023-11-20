@@ -9,7 +9,7 @@ import { TThread } from "@/types/types";
 import { CardSkeletons, TextSkeletons } from "@/components/Skeletons";
 
 const Threads = () => {
-  const { isLoading, isSuccess, data } = useQuery({
+  const { isFetching, isSuccess, data } = useQuery({
     queryKey: ["threads"],
     queryFn: getThreads,
     refetchOnWindowFocus: false,
@@ -29,8 +29,8 @@ const Threads = () => {
         <Filter />
       </div>
       <Separator />
-      {!isLoading && isSuccess ? (
-        data.threads.map(
+      {!isFetching && isSuccess ? (
+        data?.threads.map(
           (
             { id, title, category, content, authorName }: TThread,
             index: number
