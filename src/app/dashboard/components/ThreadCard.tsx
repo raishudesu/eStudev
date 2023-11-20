@@ -10,22 +10,22 @@ import {
 } from "@/components/ui/card";
 import { Star, Share2, MessageCircle, BookMarked } from "lucide-react";
 import Link from "next/link";
+import ActionBtns from "./ActionBtns";
+import { TThread } from "@/types/types";
 
-type TThreadCard = {
-  id: string;
-  title: string;
-  categories: string[];
-  content: string;
-  authorName: string;
-};
+import { useSession } from "next-auth/react";
 
 const ThreadCard = ({
   id,
   title,
-  categories,
+  category,
   content,
   authorName,
-}: TThreadCard) => {
+  authorId,
+}: TThread) => {
+  const session = useSession();
+
+  const currUser = session.data?.user;
   return (
     <Card className="w-full border-2 overflow-x-auto">
       <CardHeader>
@@ -39,7 +39,7 @@ const ThreadCard = ({
         </CardDescription>
       </CardHeader>
       <CardContent className=" w-full flex flex-col gap-3 items-start">
-        <Badge className="capitalize">{categories}</Badge>
+        <Badge className="capitalize">{category}</Badge>
 
         <div className="max-h-32 overflow-hidden">
           {/* <ThreadMd content={content} /> */}
@@ -53,17 +53,24 @@ const ThreadCard = ({
           See more
         </Link>
       </CardContent>
-      <CardFooter className="flex gap-6">
-        <div className="flex items-center gap-1 text-sm font-medium leading-none">
-          <Star />
-          10
-        </div>
-        <div className="flex items-center gap-1 text-sm font-medium leading-none">
-          <MessageCircle />5
-        </div>
+      <CardFooter className="flex justify-between">
+        <div className="flex gap-6">
+          <div className="flex items-center gap-1 text-sm font-medium leading-none">
+            <Star />
+            10
+          </div>
+          <div className="flex items-center gap-1 text-sm font-medium leading-none">
+            <MessageCircle />5
+          </div>
 
-        <Share2 />
-        <BookMarked />
+          <Share2 />
+          <BookMarked />
+        </div>
+        {Number(currUser?.id) === authorId ? (
+          <div className="flex gap-3">
+            <ActionBtns />
+          </div>
+        ) : null}
       </CardFooter>
     </Card>
   );

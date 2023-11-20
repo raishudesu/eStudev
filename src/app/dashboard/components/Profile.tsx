@@ -28,7 +28,7 @@ const Profile = () => {
   return (
     <div className={`${displayCard()} w-full flex flex-col gap-6`}>
       <Card className="w-full">
-        <CardHeader className="flex flex-col">
+        <CardHeader className="flex flex-col gap-6">
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Your Profile
           </h4>
@@ -36,10 +36,10 @@ const Profile = () => {
             <Image
               src={maleAvatar}
               alt="male-avatar"
-              className="self-center max-w-[16rem]"
+              className="self-center max-w-[10rem]"
             />
           ) : (
-            <Skeleton className="h-[16rem] w-[16rem] rounded-full" />
+            <Skeleton className="h-[8rem] w-[8rem] rounded-full self-center" />
           )}
           {user ? (
             <CardDescription className="flex flex-col">
@@ -97,7 +97,7 @@ const Profile = () => {
             </>
           ) : (
             <>
-              {Array.from({ length: 4 }, (_, index) => (
+              {Array.from({ length: 3 }, (_, index) => (
                 <div key={index}>
                   <TextSkeletons />
                 </div>

@@ -10,8 +10,19 @@ import {
 import { Star, Share2, MessageCircle, BookMarked } from "lucide-react";
 import ThreadMd from "./ThreadMd";
 import { TThread } from "@/types/types";
+import ActionBtns from "@/app/dashboard/components/ActionBtns";
+import { useSession } from "next-auth/react";
 
-const ViewThreadCard = ({ title, authorName, category, content }: TThread) => {
+const ViewThreadCard = ({
+  title,
+  authorName,
+  category,
+  content,
+  authorId,
+}: TThread) => {
+  const session = useSession();
+
+  const currUser = session.data?.user;
   return (
     <Card className="w-full">
       <CardHeader>
@@ -27,17 +38,24 @@ const ViewThreadCard = ({ title, authorName, category, content }: TThread) => {
         {/* <ThreadMd content={content} /> */}
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </CardContent>
-      <CardFooter className="flex gap-6">
-        <div className="flex items-center gap-1 text-sm font-medium leading-none">
-          <Star />
-          10
-        </div>
-        <div className="flex items-center gap-1 text-sm font-medium leading-none">
-          <MessageCircle />5
-        </div>
+      <CardFooter className="flex justify-between">
+        <div className="flex gap-6">
+          <div className="flex items-center gap-1 text-sm font-medium leading-none">
+            <Star />
+            10
+          </div>
+          <div className="flex items-center gap-1 text-sm font-medium leading-none">
+            <MessageCircle />5
+          </div>
 
-        <Share2 />
-        <BookMarked />
+          <Share2 />
+          <BookMarked />
+        </div>
+        {Number(currUser?.id) === authorId ? (
+          <div className="flex gap-3">
+            <ActionBtns />
+          </div>
+        ) : null}
       </CardFooter>
     </Card>
   );

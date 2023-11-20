@@ -32,16 +32,17 @@ const Threads = () => {
       {!isFetching && isSuccess ? (
         data?.threads.map(
           (
-            { id, title, category, content, authorName }: TThread,
+            { id, title, category, content, authorName, authorId }: TThread,
             index: number
           ) => (
             <ThreadCard
               id={id}
               key={index}
               title={title}
-              categories={category}
+              category={category}
               content={content}
               authorName={authorName}
+              authorId={authorId}
             />
           )
         )

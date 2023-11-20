@@ -11,26 +11,28 @@ const Threads = ({ id }: { id: string }) => {
     queryKey: ["threads"],
     queryFn: async () => {
       const data = await getUserThreads(id);
+
       return data;
     },
     refetchOnWindowFocus: false,
   });
   return (
     <>
-      {!isFetching && isSuccess ? (
+      {!isFetching && isSuccess && data.ok ? (
         data?.userThreads.length !== 0 ? (
           data?.userThreads.map(
             (
-              { id, title, category, content, authorName }: TThread,
+              { id, title, category, content, authorName, authorId }: TThread,
               index: number
             ) => (
               <ThreadCard
                 key={index}
                 id={id}
                 title={title}
-                categories={category}
+                category={category}
                 content={content}
                 authorName={authorName}
+                authorId={authorId}
               />
             )
           )

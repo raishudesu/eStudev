@@ -22,7 +22,7 @@ const ViewThread = ({ params }: { params: { id: string } }) => {
   return (
     <div className="w-full max-w-screen-xl flex flex-col gap-6">
       <div className="mt-8 w-full flex flex-col lg:grid grid-cols-3 gap-6 items-start">
-        {!isFetching && isSuccess ? (
+        {!isFetching && isSuccess && data.ok ? (
           <>
             <div className="w-full col-span-2 flex flex-col gap-6 ">
               <ViewThreadCard
@@ -31,6 +31,7 @@ const ViewThread = ({ params }: { params: { id: string } }) => {
                 category={data.thread.category}
                 content={data.thread.content}
                 authorName={data.thread.author.username}
+                authorId={data.thread.author.id}
               />
               <CommentArea />
               <CommentSection />
@@ -38,7 +39,11 @@ const ViewThread = ({ params }: { params: { id: string } }) => {
             <AuthorCard author={data.thread.author} />
           </>
         ) : (
-          <CardSkeletons />
+          <>
+            <CardSkeletons />
+            <CardSkeletons />
+            <CardSkeletons />
+          </>
         )}
       </div>
     </div>

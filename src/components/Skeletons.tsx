@@ -14,22 +14,22 @@ export const ProfileSkeletons = () => {
 
 export const TextSkeletons = () => {
   return (
-    <div className="space-y-2">
-      <Skeleton className="h-4 w-[250px]" />
-      <Skeleton className="h-4 w-[200px]" />
+    <div className="w-full space-y-2">
+      <Skeleton className="h-4 w-full" />
+      <Skeleton className="h-4 w-[80%]" />
     </div>
   );
 };
 
 export const CardSkeletons = () => {
   return (
-    <div className="flex items-center space-x-4">
-      <Skeleton className="h-32 w-32 rounded-full" />
-      <div className="space-y-2">
-        <Skeleton className="h-4 w-[450px]" />
-        <Skeleton className="h-4 w-[400px]" />
-        <Skeleton className="h-4 w-[350px]" />
-        <Skeleton className="h-4 w-[250px]" />
+    <div className="w-full flex items-center space-x-4 col-span-2">
+      <Skeleton className="h-32 w-64 rounded-full" />
+      <div className="w-full space-y-2">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-[80%]" />
+        <Skeleton className="h-4 w-[60%]" />
+        <Skeleton className="h-4 w-[40%]" />
       </div>
     </div>
   );

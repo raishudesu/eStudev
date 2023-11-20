@@ -10,6 +10,7 @@ export type TThread = {
   category: string[];
   content: string;
   authorName: string;
+  authorId: number;
 };
 
 export type TAuthor = {
