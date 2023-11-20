@@ -56,7 +56,7 @@ const EditThreadForm = ({ id }: { id: number }) => {
     resolver: zodResolver(updateThreadSchema),
     defaultValues: {
       title: "",
-      category: "",
+      //   category: "",
       content: "",
     },
   });
@@ -145,10 +145,15 @@ const EditThreadForm = ({ id }: { id: number }) => {
             name="category"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Category</FormLabel>
+                <FormLabel>
+                  Current category:{" "}
+                  <span className="capitalize text-yellow-500">
+                    {getValues("category")}
+                  </span>
+                </FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={getValues("category")}
+                  defaultValue={field.value}
                   disabled={formState.isSubmitting}
                 >
                   <FormControl>
