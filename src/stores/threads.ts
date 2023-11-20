@@ -10,7 +10,7 @@ export const getThreads = async () => {
   }
 };
 
-export const getThread = async (id: string) => {
+export const getThread = async (id: number) => {
   try {
     const res = await fetch(`/api/thread/${id}`);
 

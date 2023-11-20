@@ -67,3 +67,18 @@ export const threadSchema = z.object({
   authorId: z.number(),
   authorName: z.string(),
 });
+
+export const updateThreadSchema = z.object({
+  title: z
+    .string({ required_error: "Title is required" })
+    .min(2, {
+      message: "Title must be at least 3 characters.",
+    })
+    .max(125, { message: "Title must be less than 125 characters" }),
+  category: z.string({
+    required_error: "Please select a category.",
+  }),
+  content: z.string({ required_error: "Content is required" }).min(15, {
+    message: "Content must be at least 15 characters.",
+  }),
+});
