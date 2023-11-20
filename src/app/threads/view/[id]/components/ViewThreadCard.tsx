@@ -29,7 +29,7 @@ const ViewThreadCard = ({ title, authorName, category, content }: TThread) => {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
-        <Badge>{category}</Badge>
+        <Badge className="capitalize">{category}</Badge>
         <ThreadMd content={content} />
       </CardContent>
       <CardFooter className="flex gap-6">

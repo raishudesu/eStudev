@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { TextSkeletons } from "@/components/Skeletons";
+import { CardSkeletons, TextSkeletons } from "@/components/Skeletons";
 import { getUserThreads } from "@/stores/threads";
 import { TThread } from "@/types/types";
 import { useSession } from "next-auth/react";
@@ -39,7 +39,11 @@ const Threads = ({ id }: { id: string }) => {
           <>No threads yet.</>
         )
       ) : (
-        <TextSkeletons />
+        <>
+          <CardSkeletons />
+          <CardSkeletons />
+          <CardSkeletons />
+        </>
       )}
     </>
   );

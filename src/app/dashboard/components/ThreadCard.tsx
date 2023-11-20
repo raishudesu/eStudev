@@ -39,14 +39,14 @@ const ThreadCard = ({
         </CardDescription>
       </CardHeader>
       <CardContent className=" w-full flex flex-col gap-3 items-start">
-        <Badge>{categories}</Badge>
+        <Badge className="capitalize">{categories}</Badge>
 
         <div className="max-h-32 overflow-hidden">
           <ThreadMd content={content} />
         </div>
 
         <Link
-          href={"/threads/view"}
+          href={`/threads/view/${id}`}
           className="text-blue-500 text-sm hover:underline"
         >
           See more
