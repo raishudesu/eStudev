@@ -9,14 +9,15 @@ import {
 } from "@/components/ui/card";
 import { Star, Share2, MessageCircle, BookMarked } from "lucide-react";
 import ThreadMd from "./ThreadMd";
+import { TThread } from "@/types/types";
 
-type TThreadCard = {
-  title: string;
-  categories: string[];
-  content: string;
-};
+// type TThreadCard = {
+//   title: string;
+//   categories: string[];
+//   content: string;
+// };
 
-const ViewThreadCard = ({ title, categories, content }: TThreadCard) => {
+const ViewThreadCard = ({ title, authorName, category, content }: TThread) => {
   return (
     <Card className="w-full">
       <CardHeader>
@@ -24,11 +25,11 @@ const ViewThreadCard = ({ title, categories, content }: TThreadCard) => {
           {title}
         </CardTitle>
         <CardDescription className="leading-7">
-          Posted by John Doe 8hrs ago
+          Posted by {authorName}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
-        <Badge>{categories}</Badge>
+        <Badge>{category}</Badge>
         <ThreadMd content={content} />
       </CardContent>
       <CardFooter className="flex gap-6">

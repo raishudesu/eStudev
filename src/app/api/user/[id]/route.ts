@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request, { params }: { params: Params }) {
   const { id } = params;
+  console.log(id);
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -13,20 +14,13 @@ export async function GET(req: Request, { params }: { params: Params }) {
   }
 
   try {
-    const user = await prisma.user.findUnique({
+    const userThreads = await prisma.thread.findMany({
       where: {
-        id: Number(id),
-      },
-      select: {
-        id: true,
-        username: true,
-        email: true,
-        bio: true,
-        links: true,
+        authorId: Number(id),
       },
     });
 
-    return NextResponse.json({ ok: true, user }, { status: 201 });
+    return NextResponse.json({ ok: true, userThreads }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
       { ok: false, message: "Something went wrong", error },

@@ -14,8 +14,23 @@ export async function GET(req: Request, { params }: { params: Params }) {
   }
 
   try {
-    const thread = await prisma.thread.findMany({
+    const thread = await prisma.thread.findUnique({
       where: { id: Number(id) },
+      select: {
+        title: true,
+        category: true,
+        content: true,
+        createdAt: true,
+        author: {
+          select: {
+            id: true,
+            username: true,
+            bio: true,
+            email: true,
+            links: true,
+          },
+        },
+      },
     });
 
     return NextResponse.json({ ok: true, thread }, { status: 201 });

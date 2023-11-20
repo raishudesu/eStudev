@@ -7,6 +7,6 @@ export const config = {
     "/dashboard",
     "/dashboard/create-thread",
     "/threads",
-    "/threads/view",
+    "/threads/view/(.*)",
   ],
 }; // INCLUDE PROTECTED ROUTES HERE

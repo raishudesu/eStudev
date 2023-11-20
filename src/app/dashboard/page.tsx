@@ -1,48 +1,24 @@
-"use client";
-
-import ThreadCard from "./components/ThreadCard";
+import { getServerSession } from "next-auth";
 import Filter from "../threads/components/Filter";
-import { useQuery } from "@tanstack/react-query";
-import { TextSkeletons } from "@/components/Skeletons";
-import { getThreads } from "@/stores/threads";
-import { TThread } from "@/types/types";
+import { authOptions } from "@/lib/auth";
+import Threads from "./components/Threads";
+import { CardSkeletons } from "@/components/Skeletons";
 
-const Threads = () => {
-  const { isLoading, isSuccess, data } = useQuery({
-    queryKey: ["threads"],
-    queryFn: getThreads,
-    refetchOnWindowFocus: false,
-  });
+const DashboardPage = async () => {
+  const session = await getServerSession(authOptions);
+  const user = session?.user;
 
   return (
-    <div className=" w-full col-span-2 grid gap-6">
+    <div className=" w-full col-span-2 flex flex-col items-start gap-6">
       <div className="w-full flex justify-between items-center flex-wrap">
         <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
           Your threads
         </h4>
         <Filter />
       </div>
-      {!isLoading ? (
-        data.threads.map(
-          (
-            { id, title, category, content, authorName }: TThread,
-            index: number
-          ) => (
-            <ThreadCard
-              key={index}
-              id={id}
-              title={title}
-              categories={category}
-              content={content}
-              authorName={authorName}
-            />
-          )
-        )
-      ) : (
-        <TextSkeletons />
-      )}
+      {user ? <Threads id={user?.id} /> : <CardSkeletons />}
     </div>
   );
 };
 
-export default Threads;
+export default DashboardPage;

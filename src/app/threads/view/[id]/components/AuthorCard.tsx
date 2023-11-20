@@ -10,8 +10,25 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Share2 } from "lucide-react";
+import { getUser } from "@/stores/users";
+import { useQuery } from "@tanstack/react-query";
+import { ProfileSkeletons } from "@/components/Skeletons";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const AuthorCard = () => {
+type TAuthor = {
+  id: string;
+  username: string;
+  email: string;
+  bio: string;
+  links: string[];
+};
+
+const AuthorCard = ({ author }: { author: TAuthor }) => {
+  const session = useSession();
+  const user = session.data?.user;
+  const { id, username, email, bio, links } = author;
+
   return (
     <div className="w-full flex flex-col gap-6">
       <Card className="w-full">
@@ -26,31 +43,29 @@ const AuthorCard = () => {
           />
           <CardDescription className="flex flex-col">
             <span className="text-foreground scroll-m-20 text-2xl font-semibold tracking-tight">
-              John Doe
+              {username}
             </span>
-            <small className=" text-sm font-medium leading-none">
-              johndoe@gmail.com
-            </small>
+            <small className=" text-sm font-medium leading-none">{email}</small>
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-6">
           <div>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              The CEO of ThinkSync. Genius, Billionaire, Playboy, Philanthropist
-            </p>
+            <p className="leading-7 [&:not(:first-child)]:mt-6">{bio}</p>
           </div>
           <Link href={""} className="text-blue-500">
-            www.johndoe.com
+            {links}
           </Link>
-          <div className="flex flex-col md:flex-row gap-3">
-            <Button className="self-stretch md:self-start">Follow</Button>
-            <Button
-              variant={"secondary"}
-              className="self-stretch md:self-start"
-            >
-              <Share2 size={15} />
-            </Button>
-          </div>
+          {id == user?.id ? null : (
+            <div className="flex flex-col md:flex-row gap-3">
+              <Button className="self-stretch md:self-start">Follow</Button>
+              <Button
+                variant={"secondary"}
+                className="self-stretch md:self-start"
+              >
+                <Share2 size={15} />
+              </Button>
+            </div>
+          )}
           <div className="flex gap-6">
             <small className=" text-sm font-medium leading-none">
               1,000 Followers

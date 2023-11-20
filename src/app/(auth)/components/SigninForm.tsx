@@ -18,10 +18,11 @@ import { signIn } from "next-auth/react";
 import { signinSchema } from "@/lib/zod";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SignInForm = () => {
   const router = useRouter();
+  const query = useSearchParams();
 
   const form = useForm<z.infer<typeof signinSchema>>({
     resolver: zodResolver(signinSchema),
@@ -46,6 +47,7 @@ const SignInForm = () => {
   };
 
   const onSubmit = async (values: z.infer<typeof signinSchema>) => {
+    const searchParams = query.get("callbackUrl") as string;
     try {
       const res = await signIn("credentials", {
         email: values.email,
@@ -53,8 +55,15 @@ const SignInForm = () => {
         redirect: false,
       });
       if (res?.ok) {
+        if (searchParams) {
+          router.push(query.get("callbackUrl") as string);
+
+          // THE DEFAULT REDIRECT TO DASHBOARD
+        } else {
+          router.push("/dashboard");
+        }
+
         toaster("Success!", "Signed in successfully", "default");
-        router.push("/dashboard");
         router.refresh();
       } else {
         toaster("Something went wrong.", res?.error as string, "destructive");
