@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import dynamic from "next/dynamic";
 import { ImageFormats } from "@xeger/quill-image-formats";
 
-const Editor = ({ ...field }) => {
+const Editor = () => {
   const ReactQuill = useMemo(
     () => dynamic(() => import("react-quill"), { ssr: false }),
     []
@@ -22,7 +22,6 @@ const Editor = ({ ...field }) => {
     <ReactQuill
       formats={formats}
       modules={modules}
-      {...field}
       theme="snow"
       className="w-full break-all"
     />
