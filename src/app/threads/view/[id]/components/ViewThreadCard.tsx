@@ -14,6 +14,7 @@ import ActionBtns from "@/app/dashboard/components/ActionBtns";
 import { useSession } from "next-auth/react";
 
 const ViewThreadCard = ({
+  id,
   title,
   authorName,
   category,
@@ -53,7 +54,7 @@ const ViewThreadCard = ({
         </div>
         {Number(currUser?.id) === authorId ? (
           <div className="flex gap-3">
-            <ActionBtns />
+            <ActionBtns id={id} />
           </div>
         ) : null}
       </CardFooter>

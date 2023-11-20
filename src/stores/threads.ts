@@ -33,3 +33,16 @@ export const getUserThreads = async (id: string) => {
     console.log(error);
   }
 };
+
+export const deleteThread = async (id: number) => {
+  try {
+    const res = await fetch(`/api/thread/${id}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

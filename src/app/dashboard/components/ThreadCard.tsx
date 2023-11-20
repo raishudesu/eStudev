@@ -24,7 +24,6 @@ const ThreadCard = ({
   authorId,
 }: TThread) => {
   const session = useSession();
-
   const currUser = session.data?.user;
   return (
     <Card className="w-full border-2 overflow-x-auto">
@@ -68,7 +67,7 @@ const ThreadCard = ({
         </div>
         {Number(currUser?.id) === authorId ? (
           <div className="flex gap-3">
-            <ActionBtns />
+            <ActionBtns id={id} />
           </div>
         ) : null}
       </CardFooter>

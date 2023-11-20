@@ -5,7 +5,7 @@ export type TFeatureCard = {
 };
 
 export type TThread = {
-  id: string;
+  id: number;
   title: string;
   category: string[];
   content: string;

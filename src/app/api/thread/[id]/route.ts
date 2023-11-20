@@ -16,6 +16,7 @@ export async function GET(req: Request, { params }: { params: Params }) {
     const thread = await prisma.thread.findUnique({
       where: { id: Number(id) },
       select: {
+        id: true,
         title: true,
         category: true,
         content: true,
@@ -33,6 +34,32 @@ export async function GET(req: Request, { params }: { params: Params }) {
     });
 
     return NextResponse.json({ ok: true, thread }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { ok: false, message: "Something went wrong", error },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req: Request, { params }: { params: Params }) {
+  const { id } = params;
+  console.log(id);
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return NextResponse.json({ msg: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    await prisma.thread.delete({
+      where: { id: Number(id) },
+    });
+
+    return NextResponse.json(
+      { ok: true, message: "Thread deleted" },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(
       { ok: false, message: "Something went wrong", error },

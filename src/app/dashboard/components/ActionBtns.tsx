@@ -1,3 +1,4 @@
+import DeleteDialog from "@/components/DeleteDialog";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,9 +10,7 @@ import {
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 
-const ActionBtns =  () => {
-
-
+const ActionBtns = ({ id }: { id: number }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,13 +27,7 @@ const ActionBtns =  () => {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link
-              href={"/dashboard/create-thread"}
-              className="w-full flex items-center"
-            >
-              <Trash2 className="mr-2 h-4 w-4" />
-              Delete
-            </Link>
+            <DeleteDialog id={id} />
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
