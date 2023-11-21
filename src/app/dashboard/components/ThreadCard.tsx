@@ -28,7 +28,7 @@ const ThreadCard = ({
   const session = useSession();
   const currUser = session.data?.user;
   return (
-    <Card className="w-full border-2 overflow-x-auto">
+    <Card className="w-full overflow-x-auto">
       <CardHeader>
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
           <Link href={`/threads/view/${id}`} className="hover:underline">

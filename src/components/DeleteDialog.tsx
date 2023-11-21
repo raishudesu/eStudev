@@ -15,10 +15,10 @@ import { deleteThread } from "@/stores/threads";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "./ui/use-toast";
-import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const DeleteDialog = ({ id }: { id: number }) => {
-  const router = useRouter();
+  const queryClient = useQueryClient();
   const toaster = (
     title: string,
     msg: string,
@@ -36,14 +36,14 @@ const DeleteDialog = ({ id }: { id: number }) => {
       const res = await deleteThread(id);
       if (res.ok) {
         toaster("Deleted", "Thread successfully deleted", "default");
+        queryClient.invalidateQueries({ queryKey: ["threads"] });
+
         return;
       }
       toaster("Something went wrong", "", "destructive");
     } catch (error) {
       console.log(error);
       toaster("Something went wrong", error as string, "destructive");
-    } finally {
-      router.replace("/threads");
     }
   };
   return (
