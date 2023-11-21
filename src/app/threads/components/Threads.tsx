@@ -16,8 +16,8 @@ const Threads = () => {
   });
 
   return (
-    <div className="grid gap-6 col-span-2">
-      <div className="flex justify-between items-center flex-wrap">
+    <div className="w-full grid gap-6 col-span-2">
+      <div className="w-full flex justify-between items-center flex-wrap">
         <div className="flex gap-3">
           <Button variant={"ghost"} size={"sm"}>
             All threads
@@ -28,31 +28,33 @@ const Threads = () => {
         </div>
         <Filter />
       </div>
-      <Separator />
-      {!isFetching && isSuccess ? (
-        data?.threads.map(
-          (
-            { id, title, category, content, authorName, authorId }: TThread,
-            index: number
-          ) => (
-            <ThreadCard
-              id={id}
-              key={index}
-              title={title}
-              category={category}
-              content={content}
-              authorName={authorName}
-              authorId={authorId}
-            />
+      <div className="flex flex-col gap-6">
+        <Separator />
+        {!isFetching && isSuccess ? (
+          data?.threads.map(
+            (
+              { id, title, category, content, authorName, authorId }: TThread,
+              index: number
+            ) => (
+              <ThreadCard
+                id={id}
+                key={index}
+                title={title}
+                category={category}
+                content={content}
+                authorName={authorName}
+                authorId={authorId}
+              />
+            )
           )
-        )
-      ) : (
-        <>
-          <CardSkeletons />
-          <CardSkeletons />
-          <CardSkeletons />
-        </>
-      )}
+        ) : (
+          <>
+            <CardSkeletons />
+            <CardSkeletons />
+            <CardSkeletons />
+          </>
+        )}
+      </div>
     </div>
   );
 };

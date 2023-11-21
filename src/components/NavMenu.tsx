@@ -15,13 +15,6 @@ const NavMenu = () => {
     <NavigationMenu>
       <ul className="flex flex-col items-start md:flex-row gap-3">
         <NavigationMenuItem>
-          <Link href="/threads" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Threads
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
           <Link href="/about" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               About
@@ -29,9 +22,9 @@ const NavMenu = () => {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/dashboard/repository" legacyBehavior passHref>
+          <Link href="/threads" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              My repository
+              Threads
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

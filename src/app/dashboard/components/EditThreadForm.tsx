@@ -108,7 +108,7 @@ const EditThreadForm = ({ id }: { id: number }) => {
       if (data.ok) {
         toaster("Success", "Your thread is successfully updated", "default");
         form.reset();
-        router.push("/threads");
+        router.back();
       } else {
         toaster("Something went wrong.", data.message, "destructive");
       }
