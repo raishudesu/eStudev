@@ -1,4 +1,4 @@
-import { PenSquare, Settings, User } from "lucide-react";
+import { BookMarked, PenSquare, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -44,6 +44,15 @@ const UserDropdown = async () => {
             >
               <PenSquare className="mr-2 h-4 w-4" />
               Create thread
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link
+              href={"/dashboard/repository"}
+              className="w-full flex items-center"
+            >
+              <BookMarked className="mr-2 h-4 w-4" />
+              My repository
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>

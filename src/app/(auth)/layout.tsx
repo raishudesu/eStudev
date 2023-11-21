@@ -3,9 +3,10 @@ import welcome from "@/assets/welcome.svg";
 import { ReactNode } from "react";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { authOptions } from "@/lib/auth";
 
 const AuthLayout = async ({ children }: { children: ReactNode }) => {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (session) redirect("/threads");
   return (
     <section className="w-full flex flex-col justify-center items-center gap-6 mt-10 lg:mt-20">
