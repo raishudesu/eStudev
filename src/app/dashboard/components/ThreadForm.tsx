@@ -21,24 +21,30 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import Editor from "./Editor";
 import { threadSchema } from "@/lib/zod";
 import { useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-
 import "react-quill/dist/quill.snow.css";
 import { formats, modules } from "@/lib/editor";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { filters } from "@/lib/data";
 import { createThread } from "@/stores/threads";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+import MDEditor, { ContextStore } from "@uiw/react-md-editor";
+import { useTheme } from "next-themes";
+import rehypeSanitize from "rehype-sanitize";
+import rehypeRaw from "rehype-raw";
+import { Info } from "lucide-react";
 
 const ThreadForm = () => {
+  const [editor, setEditor] = useState(true);
   const session = useSession();
   const router = useRouter();
   const user = session.data?.user;
-
+  const { theme } = useTheme();
   const ReactQuill = useMemo(
     () => dynamic(() => import("react-quill"), { ssr: false }),
     []
@@ -55,7 +61,7 @@ const ThreadForm = () => {
     },
   });
 
-  const { setValue, formState } = form;
+  const { setValue, formState, getValues } = form;
 
   const toaster = (
     title: string,
@@ -89,6 +95,16 @@ const ThreadForm = () => {
     }
   }
 
+  const handleMdChange = useCallback(
+    (
+      value?: string,
+      event?: React.ChangeEvent<HTMLTextAreaElement>,
+      state?: ContextStore
+    ) => {
+      setValue("content", value as string); // Update the 'content' value in the form
+    },
+    [setValue]
+  );
   const handleQuillChange = useCallback(
     (content: string) => {
       setValue("content", content); // Update the 'content' value in the form
@@ -155,15 +171,41 @@ const ThreadForm = () => {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Content</FormLabel>
+              <div className="flex justify-between items-center flex-wrap">
+                <FormLabel>Content</FormLabel>
+                <Button
+                  variant={"ghost"}
+                  type="button"
+                  size={"sm"}
+                  className="flex gap-1 items-center"
+                  onClick={() => setEditor(!editor)}
+                >
+                  <Info size={15} />
+                  Change editor to {editor ? "Text" : "Markdown"}
+                </Button>
+              </div>
               <FormControl>
-                <ReactQuill
-                  formats={formats}
-                  modules={modules}
-                  theme="snow"
-                  className="w-full"
-                  onChange={handleQuillChange}
-                />
+                {editor ? (
+                  <div data-color-mode={theme} className="list-disc">
+                    <MDEditor
+                      value={getValues("content")}
+                      onChange={handleMdChange}
+                      className="list-disc"
+                      previewOptions={{
+                        rehypePlugins: [[rehypeSanitize, rehypeRaw]],
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <ReactQuill
+                    formats={formats}
+                    modules={modules}
+                    theme="snow"
+                    className="w-full"
+                    value={getValues("content")}
+                    onChange={handleQuillChange as () => string}
+                  />
+                )}
               </FormControl>
               <FormMessage />
             </FormItem>

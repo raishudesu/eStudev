@@ -2,6 +2,7 @@ import React from "react";
 import CreateThread from "../components/CreateThread";
 
 import { Metadata } from "next";
+import Editor from "../components/Editor";
 
 export const metadata: Metadata = {
   title: "Create thread",

@@ -14,6 +14,9 @@ import ActionBtns from "./ActionBtns";
 import { TThread } from "@/types/types";
 
 import { useSession } from "next-auth/react";
+import MDEditor from "@uiw/react-md-editor";
+import { useTheme } from "next-themes";
+import remarkGfm from "remark-gfm";
 
 const ThreadCard = ({
   id,
@@ -23,6 +26,7 @@ const ThreadCard = ({
   authorName,
   authorId,
 }: TThread) => {
+  const { theme } = useTheme();
   const session = useSession();
   const currUser = session.data?.user;
   return (
@@ -42,7 +46,10 @@ const ThreadCard = ({
 
         <div className="max-h-32 overflow-hidden">
           {/* <ThreadMd content={content} /> */}
-          <div dangerouslySetInnerHTML={{ __html: content }} />
+          {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
+          <div data-color-mode={theme}>
+            <MDEditor.Markdown source={content} remarkPlugins={[remarkGfm]} />
+          </div>
         </div>
 
         <Link

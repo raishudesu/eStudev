@@ -1,31 +1,17 @@
 "use client";
 
-import { ImageResize } from "quill-image-resize-module-ts";
-import { Quill } from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { formats, modules } from "@/lib/editor";
-import { useMemo } from "react";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+import MDEditor from "@uiw/react-md-editor";
 import dynamic from "next/dynamic";
-import { ImageFormats } from "@xeger/quill-image-formats";
+import { SetStateAction, useState } from "react";
+// import * as commands from "@uiw/react-md-editor/commands"
+// const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 const Editor = () => {
-  const ReactQuill = useMemo(
-    () => dynamic(() => import("react-quill"), { ssr: false }),
-    []
-  );
+  const [value, setValue] = useState("**Hello world!!!**");
 
-  // STILL FINDING WAYS TO DYNAMICALLY IMPORT THESE METHODS
-
-  //   Quill.register("modules/imageFormats", ImageFormats);
-  //   Quill.register("modules/imageResize", ImageResize);
-  return (
-    <ReactQuill
-      formats={formats}
-      modules={modules}
-      theme="snow"
-      className="w-full break-all"
-    />
-  );
+  return <>{/* <MDEditor value={value} onChange={setValue} /> */}</>;
 };
 
 export default Editor;

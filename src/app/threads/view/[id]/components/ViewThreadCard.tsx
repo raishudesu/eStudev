@@ -8,10 +8,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Star, Share2, MessageCircle, BookMarked } from "lucide-react";
-import ThreadMd from "./ThreadMd";
 import { TThread } from "@/types/types";
 import ActionBtns from "@/app/dashboard/components/ActionBtns";
 import { useSession } from "next-auth/react";
+import MDEditor from "@uiw/react-md-editor";
+import { useTheme } from "next-themes";
+import remarkGfm from "remark-gfm";
 
 const ViewThreadCard = ({
   id,
@@ -23,6 +25,7 @@ const ViewThreadCard = ({
 }: TThread) => {
   const session = useSession();
 
+  const { theme } = useTheme();
   const currUser = session.data?.user;
   return (
     <Card className="w-full">
@@ -36,7 +39,11 @@ const ViewThreadCard = ({
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
         <Badge className="capitalize">{category}</Badge>
-        <ThreadMd content={content} />
+        {/* <ThreadMd content={content} /> */}
+        <div data-color-mode={theme}>
+          <MDEditor.Markdown source={content} remarkPlugins={[remarkGfm]} />
+        </div>
+        {/* <MarkdownPreview source={content} /> */}
         {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
       </CardContent>
       <CardFooter className="flex justify-between">
