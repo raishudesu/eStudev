@@ -1,5 +1,9 @@
 import EditThread from "../../components/EditThread";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Edit thread",
+};
 const EditThreadPage = ({ params }: { params: { id: number } }) => {
   return (
     <div className="w-full col-span-2">

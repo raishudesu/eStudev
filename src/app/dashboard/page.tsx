@@ -4,6 +4,12 @@ import { authOptions } from "@/lib/auth";
 import Threads from "./components/Threads";
 import { CardSkeletons } from "@/components/Skeletons";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dasboard",
+};
+
 const DashboardPage = async () => {
   const session = await getServerSession(authOptions);
   const user = session?.user;

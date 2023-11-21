@@ -36,8 +36,8 @@ const ViewThreadCard = ({
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
         <Badge className="capitalize">{category}</Badge>
-        {/* <ThreadMd content={content} /> */}
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <ThreadMd content={content} />
+        {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex gap-6">
