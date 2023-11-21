@@ -5,6 +5,7 @@ import { CardSkeletons } from "@/components/Skeletons";
 import { getUserThreads } from "@/stores/threads";
 import { TThread } from "@/types/types";
 import ThreadCard from "./ThreadCard";
+import Link from "next/link";
 
 const Threads = ({ id }: { id: string }) => {
   const { isFetching, isSuccess, data } = useQuery({
@@ -37,7 +38,12 @@ const Threads = ({ id }: { id: string }) => {
             )
           )
         ) : (
-          <>No threads yet.</>
+          <>
+            No threads yet.{" "}
+            <Link href={"/dashboard/create-thread"} className="text-blue-500">
+              Create thread
+            </Link>
+          </>
         )
       ) : (
         <>
