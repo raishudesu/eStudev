@@ -27,16 +27,24 @@ import { useRouter } from "next/navigation";
 
 import "react-quill/dist/quill.snow.css";
 import { formats, modules } from "@/lib/editor";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { filters } from "@/lib/data";
 import { useQuery } from "@tanstack/react-query";
 import { getThread } from "@/stores/threads";
 import { CardSkeletons } from "@/components/Skeletons";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+import MDEditor, { ContextStore } from "@uiw/react-md-editor";
+import { useTheme } from "next-themes";
+import rehypeSanitize from "rehype-sanitize";
+import rehypeRaw from "rehype-raw";
+import { Info } from "lucide-react";
 
 const EditThreadForm = ({ id }: { id: number }) => {
+  const [editor, setEditor] = useState(true);
   const router = useRouter();
-
+  const { theme } = useTheme();
   const ReactQuill = useMemo(
     () => dynamic(() => import("react-quill"), { ssr: false }),
     []
@@ -109,6 +117,16 @@ const EditThreadForm = ({ id }: { id: number }) => {
     }
   }
 
+  const handleMdChange = useCallback(
+    (
+      value?: string,
+      event?: React.ChangeEvent<HTMLTextAreaElement>,
+      state?: ContextStore
+    ) => {
+      setValue("content", value as string); // Update the 'content' value in the form
+    },
+    [setValue]
+  );
   const handleQuillChange = useCallback(
     (content: string) => {
       setValue("content", content); // Update the 'content' value in the form
@@ -181,16 +199,41 @@ const EditThreadForm = ({ id }: { id: number }) => {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Content</FormLabel>
+                <div className="flex justify-between items-center flex-wrap">
+                  <FormLabel>Content</FormLabel>
+                  <Button
+                    variant={"ghost"}
+                    type="button"
+                    size={"sm"}
+                    className="flex gap-1 items-center"
+                    onClick={() => setEditor(!editor)}
+                  >
+                    <Info size={15} />
+                    Change editor to {!editor ? "Text" : "Markdown"}
+                  </Button>
+                </div>
                 <FormControl>
-                  <ReactQuill
-                    formats={formats}
-                    modules={modules}
-                    theme="snow"
-                    value={getValues("content")}
-                    className="w-full"
-                    onChange={handleQuillChange}
-                  />
+                  {!editor ? (
+                    <div data-color-mode={theme} className="list-disc">
+                      <MDEditor
+                        value={getValues("content")}
+                        onChange={handleMdChange}
+                        className="list-disc"
+                        previewOptions={{
+                          rehypePlugins: [[rehypeSanitize, rehypeRaw]],
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <ReactQuill
+                      formats={formats}
+                      modules={modules}
+                      theme="snow"
+                      className="w-full"
+                      value={getValues("content")}
+                      onChange={handleQuillChange as () => string}
+                    />
+                  )}
                 </FormControl>
                 <FormMessage />
               </FormItem>

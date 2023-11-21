@@ -181,11 +181,11 @@ const ThreadForm = () => {
                   onClick={() => setEditor(!editor)}
                 >
                   <Info size={15} />
-                  Change editor to {editor ? "Text" : "Markdown"}
+                  Change editor to {!editor ? "Text" : "Markdown"}
                 </Button>
               </div>
               <FormControl>
-                {editor ? (
+                {!editor ? (
                   <div data-color-mode={theme} className="list-disc">
                     <MDEditor
                       value={getValues("content")}
