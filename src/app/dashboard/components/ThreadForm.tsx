@@ -192,7 +192,7 @@ const ThreadForm = () => {
                   </div>
                 ) : (
                   <Editor
-                    apiKey="***REMOVED***"
+                    apiKey={process.env.NEXT_PUBLIC_TINYMCE_KEY}
                     init={{
                       plugins:
                         "anchor autolink charmap codesample emoticons image link lists wordcount",
