@@ -16,8 +16,11 @@ import { Trash2 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "./ui/use-toast";
 import { useQueryClient } from "@tanstack/react-query";
+import { usePathname, useRouter } from "next/navigation";
 
 const DeleteDialog = ({ id }: { id: number }) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const queryClient = useQueryClient();
   const toaster = (
     title: string,
@@ -37,6 +40,10 @@ const DeleteDialog = ({ id }: { id: number }) => {
       if (res.ok) {
         toaster("Deleted", "Thread successfully deleted", "default");
         queryClient.invalidateQueries({ queryKey: ["threads"] });
+
+        if (pathname === `/threads/view/${id}`) {
+          router.back();
+        }
 
         return;
       }

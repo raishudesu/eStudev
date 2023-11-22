@@ -28,7 +28,7 @@ const ThreadCard = ({
   const session = useSession();
   const currUser = session.data?.user;
   return (
-    <Card className="w-full overflow-x-auto">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
           <Link href={`/threads/view/${id}`} className="hover:underline">
@@ -39,11 +39,15 @@ const ThreadCard = ({
           Posted by {authorName}
         </CardDescription>
       </CardHeader>
-      <CardContent className=" w-full flex flex-col gap-3 items-start">
+      <CardContent className="flex flex-col gap-3 items-start">
         <Badge className="capitalize">{category}</Badge>
-        <div className="max-h-32 overflow-hidden">
+        <div className="max-h-64 w-full overflow-x-auto overflow-y-hidden ">
           <div data-color-mode={theme}>
-            <MDEditor.Markdown source={content} remarkPlugins={[remarkGfm]} />
+            <MDEditor.Markdown
+              source={content}
+              remarkPlugins={[remarkGfm]}
+              // rehypePlugins={[rehypeRaw]}
+            />
           </div>
         </div>
         <Link

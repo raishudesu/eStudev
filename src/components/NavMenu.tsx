@@ -13,7 +13,7 @@ import Link from "next/link";
 const NavMenu = () => {
   return (
     <NavigationMenu>
-      <ul className="flex flex-col items-start md:flex-row gap-3">
+      <ul className="flex flex-col items-start md:flex-row gap-3 list-none">
         <NavigationMenuItem>
           <Link href="/about" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>

@@ -26,18 +26,16 @@ import { useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import "react-quill/dist/quill.snow.css";
-import { formats, modules } from "@/lib/editor";
-import { useCallback, useMemo, useState } from "react";
-import dynamic from "next/dynamic";
+import { useCallback, useState } from "react";
 import { filters } from "@/lib/data";
 import { createThread } from "@/stores/threads";
 import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
 import MDEditor, { ContextStore } from "@uiw/react-md-editor";
 import { useTheme } from "next-themes";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeRaw from "rehype-raw";
 import { Info } from "lucide-react";
+import { Editor } from "@tinymce/tinymce-react";
 
 const ThreadForm = () => {
   const [editor, setEditor] = useState(true);
@@ -45,10 +43,6 @@ const ThreadForm = () => {
   const router = useRouter();
   const user = session.data?.user;
   const { theme } = useTheme();
-  const ReactQuill = useMemo(
-    () => dynamic(() => import("react-quill"), { ssr: false }),
-    []
-  );
 
   const form = useForm<z.infer<typeof threadSchema>>({
     resolver: zodResolver(threadSchema),
@@ -105,7 +99,7 @@ const ThreadForm = () => {
     },
     [setValue]
   );
-  const handleQuillChange = useCallback(
+  const handleTextChange = useCallback(
     (content: string) => {
       setValue("content", content); // Update the 'content' value in the form
     },
@@ -197,13 +191,30 @@ const ThreadForm = () => {
                     />
                   </div>
                 ) : (
-                  <ReactQuill
-                    formats={formats}
-                    modules={modules}
-                    theme="snow"
-                    className="w-full"
+                  <Editor
+                    apiKey="***REMOVED***"
+                    init={{
+                      plugins:
+                        "anchor autolink charmap codesample emoticons image link lists wordcount",
+                      toolbar:
+                        "undo redo | blocks fontsize | bold italic underline strikethrough codesample | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+                      codesample_languages: [
+                        { text: "HTML/XML", value: "markup" },
+                        { text: "JavaScript", value: "javascript" },
+                        { text: "CSS", value: "css" },
+                        { text: "PHP", value: "php" },
+                        { text: "Ruby", value: "ruby" },
+                        { text: "Python", value: "python" },
+                        { text: "Java", value: "java" },
+                        { text: "C", value: "c" },
+                        { text: "C#", value: "csharp" },
+                        { text: "C++", value: "cpp" },
+                      ],
+
+                      menubar: false,
+                    }}
                     value={getValues("content")}
-                    onChange={handleQuillChange as () => string}
+                    onEditorChange={handleTextChange}
                   />
                 )}
               </FormControl>

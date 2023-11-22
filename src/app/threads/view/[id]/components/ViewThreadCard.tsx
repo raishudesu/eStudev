@@ -24,9 +24,9 @@ const ViewThreadCard = ({
   authorId,
 }: TThread) => {
   const session = useSession();
-
   const { theme } = useTheme();
   const currUser = session.data?.user;
+
   return (
     <Card className="w-full">
       <CardHeader>
@@ -39,12 +39,15 @@ const ViewThreadCard = ({
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
         <Badge className="capitalize">{category}</Badge>
-        {/* <ThreadMd content={content} /> */}
-        <div data-color-mode={theme}>
-          <MDEditor.Markdown source={content} remarkPlugins={[remarkGfm]} />
+        <div className="w-full overflow-x-auto">
+          <div data-color-mode={theme}>
+            <MDEditor.Markdown
+              source={content}
+              remarkPlugins={[remarkGfm]}
+              // rehypePlugins={[rehypeRaw]}
+            />
+          </div>
         </div>
-        {/* <MarkdownPreview source={content} /> */}
-        {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex gap-6">

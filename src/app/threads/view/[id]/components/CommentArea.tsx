@@ -1,4 +1,3 @@
-import Editor from "@/app/dashboard/components/Editor";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,7 +16,6 @@ const CommentArea = () => {
         <div className="grid w-full gap-1.5">
           <Label>Your comment</Label>
         </div>
-        <Editor />
       </CardContent>
       <CardFooter className="flex flex-col gap-6">
         <Button className="self-stretch md:self-start">Comment</Button>

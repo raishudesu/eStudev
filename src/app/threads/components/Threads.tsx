@@ -16,7 +16,7 @@ const Threads = () => {
   });
 
   return (
-    <div className="w-full grid gap-6 col-span-2">
+    <div className="w-full flex flex-col gap-6 col-span-2">
       <div className="w-full flex justify-between items-center flex-wrap">
         <div className="flex gap-3">
           <Button variant={"ghost"} size={"sm"}>
@@ -28,7 +28,7 @@ const Threads = () => {
         </div>
         <Filter />
       </div>
-      <div className="flex flex-col gap-6">
+      <div className="w-full flex flex-col gap-6">
         <Separator />
         {!isFetching && isSuccess ? (
           data?.threads.map(
