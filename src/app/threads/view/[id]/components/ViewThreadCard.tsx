@@ -41,11 +41,7 @@ const ViewThreadCard = ({
         <Badge className="capitalize">{category}</Badge>
         <div className="w-full overflow-x-auto">
           <div data-color-mode={theme}>
-            <MDEditor.Markdown
-              source={content}
-              remarkPlugins={[remarkGfm]}
-              // rehypePlugins={[rehypeRaw]}
-            />
+            <MDEditor.Markdown source={content} remarkPlugins={[remarkGfm]} />
           </div>
         </div>
       </CardContent>
