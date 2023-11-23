@@ -8,18 +8,18 @@ datasource db {
 }
 
 model Thread {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   authorId   Int
   authorName String
   title      String
   category   String
   stars      Int?
   content    String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  comments Comment[]
-  author   User      @relation(fields: [authorId], references: [id])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  type       String?
+  comments   Comment[]
+  author     User      @relation(fields: [authorId], references: [id])
 }
 
 model Comment {
@@ -31,6 +31,7 @@ model Comment {
   stars      Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  type       String?
   author     User     @relation(fields: [authorId], references: [id])
   thread     Thread   @relation(fields: [threadId], references: [id])
   replies    Reply[]
@@ -45,6 +46,7 @@ model Reply {
   stars      Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  type       String?
   author     User     @relation(fields: [authorId], references: [id])
   comment    Comment  @relation(fields: [commentId], references: [id])
 }

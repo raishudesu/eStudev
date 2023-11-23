@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "./Providers";
 import TanstackProvider from "@/components/providers/TanstackProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,6 +41,7 @@ export default function RootLayout({
               <Header />
               <main className="pt-20 min-h-screen overflow-hidden p-6">
                 {children}
+                <Analytics />
               </main>
               <Footer />
             </AuthProvider>
