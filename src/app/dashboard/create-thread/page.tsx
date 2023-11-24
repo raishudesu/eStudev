@@ -3,7 +3,7 @@ import CreateThread from "../components/CreateThread";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Create thread",
+  title: "Create thread | Thinksync",
 };
 
 const CreateThreadPage = () => {

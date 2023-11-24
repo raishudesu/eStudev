@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Threads",
+  title: "Threads | Thinksync",
 };
 const ThreadsLayout = ({ children }: { children: ReactNode }) => {
   return (

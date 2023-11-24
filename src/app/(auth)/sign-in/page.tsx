@@ -3,7 +3,7 @@ import SignInForm from "../components/SigninForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign in",
+  title: "Sign in | Thinksync",
   description: "Sign in to ThinkSync",
 };
 
