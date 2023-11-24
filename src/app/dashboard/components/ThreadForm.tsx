@@ -24,7 +24,6 @@ import { threadSchema } from "@/lib/zod";
 import { useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import "react-quill/dist/quill.snow.css";
 import { useCallback, useState } from "react";
 import { filters } from "@/lib/data";
 import { createThread } from "@/stores/threads";
