@@ -20,7 +20,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import { threadSchema } from "@/lib/zod";
 import { useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
