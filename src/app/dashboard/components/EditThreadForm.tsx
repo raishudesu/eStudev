@@ -47,7 +47,6 @@ const EditThreadForm = ({ id }: { id: number }) => {
     queryKey: ["thread"],
     queryFn: async () => {
       const data = await getThread(id);
-      console.log(data);
       return data;
     },
     refetchOnWindowFocus: false,

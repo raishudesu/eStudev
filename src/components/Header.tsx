@@ -19,7 +19,7 @@ const Header = () => {
           >
             <Image src={gearsLogo} alt="gears-logl" className="max-w-[30px]" />
             <div>
-              think<span className="text-[#FACC15]">sync</span>
+              think<span className="text-yellow-500">sync</span>
             </div>
           </Link>
           <div className="hidden md:block">
