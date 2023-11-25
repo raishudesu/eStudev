@@ -47,16 +47,13 @@ const UserDropdown = async () => {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link
-              href={"/dashboard/repository"}
-              className="w-full flex items-center"
-            >
+            <Link href={""} className="w-full flex items-center">
               <BookMarked className="mr-2 h-4 w-4" />
               My repository
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href={"/settings"} className="w-full flex items-center">
+            <Link href={""} className="w-full flex items-center">
               <Settings className="mr-2 h-4 w-4" />
               Settings
             </Link>

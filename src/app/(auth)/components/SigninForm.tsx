@@ -68,7 +68,7 @@ const SignInForm = () => {
         toaster("Something went wrong.", res?.error as string, "destructive");
       }
 
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       toaster("Something went wrong.", error as string, "destructive");
     }
