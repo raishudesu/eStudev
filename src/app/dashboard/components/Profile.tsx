@@ -22,7 +22,11 @@ const Profile = () => {
   const user = data?.user;
 
   const displayCard = () => {
-    if (pathname === "/dashboard/create-thread") return "hidden lg:block";
+    if (
+      pathname === "/dashboard/create-thread" ||
+      pathname.startsWith("/dashboard/edit-thread/")
+    )
+      return "hidden lg:block";
     return null;
   };
   return (
