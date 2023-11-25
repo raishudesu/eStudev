@@ -1,11 +1,13 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
+import { useSession } from "next-auth/react";
 
 const AuthBtns = () => {
   const router = useRouter();
   const pathname = usePathname();
-
+  const session = useSession();
+  if (session.status === "authenticated") return null;
   if (pathname !== "/" && pathname !== "/about") return null;
   return (
     <>

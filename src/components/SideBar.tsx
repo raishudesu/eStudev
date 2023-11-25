@@ -28,9 +28,10 @@ const Sidebar = () => {
         className="overflow-y-auto flex flex-col items-start"
       >
         <SheetHeader>
-          <SheetTitle className="flex gap-1">Studev Forums </SheetTitle>
+          <SheetTitle className="flex gap-1">
+            think<span className="text-yellow-500">sync</span>
+          </SheetTitle>
         </SheetHeader>
-
         <Separator />
         <div className="w-full flex flex-col gap-3">
           <SearchBtn />
