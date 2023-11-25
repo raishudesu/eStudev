@@ -45,7 +45,6 @@ export async function GET(req: Request, { params }: { params: Params }) {
 
 export async function DELETE(req: Request, { params }: { params: Params }) {
   const { id } = params;
-  console.log(id);
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -70,11 +69,11 @@ export async function DELETE(req: Request, { params }: { params: Params }) {
 }
 
 export async function PATCH(req: Request, { params }: { params: Params }) {
-  // const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-  // if (!session) {
-  //   return NextResponse.json({ msg: "Unauthorized" }, { status: 401 });
-  // }
+  if (!session) {
+    return NextResponse.json({ msg: "Unauthorized" }, { status: 401 });
+  }
 
   try {
     const { id } = params;

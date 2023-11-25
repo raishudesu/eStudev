@@ -14,7 +14,6 @@ const ViewThread = ({ params }: { params: { id: number } }) => {
     queryKey: ["thread"],
     queryFn: async () => {
       const data = await getThread(params.id);
-      console.log(data);
       return data;
     },
     refetchOnWindowFocus: false,

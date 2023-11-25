@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Crown } from "lucide-react";
 
-const ranking = ["John Doe", "Hackerman69", "YourAverageD3v2077"];
+const ranking = ["Barysh", "Justine", "Raven", "Ric"];
 
 const Ranking = () => {
   return (
