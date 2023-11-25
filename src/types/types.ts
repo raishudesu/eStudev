@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type TFeatureCard = {
   icon: string;
   characteristic: string;
@@ -19,4 +21,9 @@ export type TAuthor = {
   email: string;
   bio: string;
   links: string[];
+};
+
+export type TMyCard = {
+  author: string;
+  image: StaticImageData;
 };

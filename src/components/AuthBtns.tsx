@@ -6,7 +6,7 @@ const AuthBtns = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  if (pathname !== "/") return null;
+  if (pathname !== "/" && pathname !== "/about") return null;
   return (
     <>
       <Button size={"sm"} onClick={() => router.push("/sign-in")}>
