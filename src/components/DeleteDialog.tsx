@@ -39,7 +39,11 @@ const DeleteDialog = ({ id }: { id: number }) => {
       const res = await deleteThread(id);
       if (res.ok) {
         toaster("Deleted", "Thread successfully deleted", "default");
-        queryClient.invalidateQueries({ queryKey: ["threads"] });
+        if (pathname === "/dashboard") {
+          queryClient.invalidateQueries({ queryKey: ["userThreads"] });
+        } else {
+          queryClient.invalidateQueries({ queryKey: ["threads"] });
+        }
 
         if (pathname === `/threads/view/${id}`) {
           router.back();
