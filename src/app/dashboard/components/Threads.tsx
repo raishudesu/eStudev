@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const Threads = ({ id }: { id: string }) => {
   const { isFetching, isSuccess, data } = useQuery({
-    queryKey: ["threads"],
+    queryKey: ["userThreads"],
     queryFn: async () => {
       const data = await getUserThreads(id);
 

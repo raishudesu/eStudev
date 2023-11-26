@@ -28,7 +28,7 @@ model Comment {
   authorName String
   threadId   Int
   content    String
-  stars      Int
+  stars      Int?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   type       String?

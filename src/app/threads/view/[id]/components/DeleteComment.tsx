@@ -11,16 +11,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deleteThread } from "@/stores/threads";
 import { Trash2 } from "lucide-react";
-import Link from "next/link";
-import { toast } from "./ui/use-toast";
+import { toast } from "@/components/ui/use-toast";
 import { useQueryClient } from "@tanstack/react-query";
-import { usePathname, useRouter } from "next/navigation";
+import { deleteComment } from "@/stores/comments";
+import { Button } from "@/components/ui/button";
 
-const DeleteDialog = ({ id }: { id: number }) => {
-  const router = useRouter();
-  const pathname = usePathname();
+const DeleteComment = ({ id }: { id: number }) => {
   const queryClient = useQueryClient();
   const toaster = (
     title: string,
@@ -36,19 +33,10 @@ const DeleteDialog = ({ id }: { id: number }) => {
 
   const handleDelete = async () => {
     try {
-      const res = await deleteThread(id);
+      const res = await deleteComment(id);
       if (res.ok) {
-        toaster("Deleted", "Thread successfully deleted", "default");
-        if (pathname === "/dashboard") {
-          queryClient.invalidateQueries({ queryKey: ["userThreads"] });
-        } else {
-          queryClient.invalidateQueries({ queryKey: ["threads"] });
-        }
-
-        if (pathname === `/threads/view/${id}`) {
-          router.back();
-        }
-
+        toaster("Deleted", "Comment successfully deleted", "default");
+        queryClient.invalidateQueries({ queryKey: ["thread"] });
         return;
       }
       toaster("Something went wrong", "", "destructive");
@@ -60,10 +48,9 @@ const DeleteDialog = ({ id }: { id: number }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Link href={""} className="w-full flex items-center">
-          <Trash2 className="mr-2 h-4 w-4" />
-          Delete
-        </Link>
+        <Button variant={"ghost"} size={"sm"}>
+          <Trash2 size={15} />
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -81,4 +68,4 @@ const DeleteDialog = ({ id }: { id: number }) => {
   );
 };
 
-export default DeleteDialog;
+export default DeleteComment;

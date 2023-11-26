@@ -12,21 +12,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { threadSchema } from "@/lib/zod";
 import { useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
-import { filters } from "@/lib/data";
-import { createThread } from "@/stores/threads";
 import "@uiw/react-md-editor/markdown-editor.css";
 import MDEditor, { ContextStore } from "@uiw/react-md-editor";
 import { useTheme } from "next-themes";
@@ -34,22 +22,30 @@ import rehypeSanitize from "rehype-sanitize";
 import rehypeRaw from "rehype-raw";
 import { Info } from "lucide-react";
 import { Editor } from "@tinymce/tinymce-react";
+import { createComment } from "@/stores/comments";
+import { useQueryClient } from "@tanstack/react-query";
 
-const ThreadForm = () => {
+const commentFormSchema = z.object({
+  content: z.string().min(2, "Comment must be at least 2 characters"),
+});
+
+const CommentForm = ({
+  threadId,
+  authorName,
+}: {
+  threadId: number;
+  authorName: string;
+}) => {
+  const queryClient = useQueryClient();
   const [editor, setEditor] = useState(true);
   const session = useSession();
-  const router = useRouter();
   const user = session.data?.user;
   const { theme } = useTheme();
 
-  const form = useForm<z.infer<typeof threadSchema>>({
-    resolver: zodResolver(threadSchema),
+  const form = useForm<z.infer<typeof commentFormSchema>>({
+    resolver: zodResolver(commentFormSchema),
     defaultValues: {
-      title: "",
-      // category: "",
       content: "",
-      authorId: Number(user?.id),
-      authorName: user?.username,
     },
   });
 
@@ -67,18 +63,19 @@ const ThreadForm = () => {
     });
   };
 
-  async function onSubmit(values: z.infer<typeof threadSchema>) {
+  async function onSubmit(values: z.infer<typeof commentFormSchema>) {
     try {
-      const data = await createThread(
-        values,
-        user?.id as string,
-        user?.username as string
+      const data = await createComment(
+        Number(user?.id),
+        threadId,
+        authorName,
+        values.content
       );
 
       if (data.ok) {
-        toaster("Post", "Your thread can now be viewed", "default");
+        toaster("Comment posted", "Your comment can now be viewed", "default");
         form.reset();
-        router.push(`/threads/view/${data.threadId}`);
+        queryClient.invalidateQueries({ queryKey: ["thread"] });
       } else {
         toaster("Something went wrong.", data.message, "destructive");
       }
@@ -112,59 +109,11 @@ const ThreadForm = () => {
       >
         <FormField
           control={form.control}
-          name="title"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Title</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Your thread title goes here"
-                  {...field}
-                  disabled={formState.isSubmitting}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="category"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Category</FormLabel>
-              <Select
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-                disabled={formState.isSubmitting}
-              >
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a category" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {filters
-                    .filter((filter) => filter.value !== "all")
-                    .map(({ item, value }, index) => (
-                      <SelectItem key={index} value={value}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                </SelectContent>
-              </Select>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name="content"
           render={({ field }) => (
             <FormItem>
               <div className="flex justify-between items-center flex-wrap">
-                <FormLabel>Content</FormLabel>
+                <FormLabel>Your comment</FormLabel>
                 <Button
                   variant={"ghost"}
                   type="button"
@@ -190,10 +139,11 @@ const ThreadForm = () => {
                   </div>
                 ) : (
                   <Editor
+                    disabled={formState.isSubmitting}
                     apiKey={process.env.NEXT_PUBLIC_TINYMCE_KEY}
                     init={{
                       plugins:
-                        "anchor autolink charmap codesample emoticons image link lists wordcount",
+                        "anchor autolink charmap codesample emoticons image link lists wordcount autoresize",
                       toolbar:
                         "undo redo | blocks fontsize | bold italic underline strikethrough codesample | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
                       codesample_languages: [
@@ -225,11 +175,11 @@ const ThreadForm = () => {
           className="md:self-start"
           disabled={formState.isSubmitting}
         >
-          Create
+          Comment
         </Button>
       </form>
     </Form>
   );
 };
 
-export default ThreadForm;
+export default CommentForm;

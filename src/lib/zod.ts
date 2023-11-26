@@ -82,3 +82,14 @@ export const updateThreadSchema = z.object({
     message: "Content must be at least 15 characters.",
   }),
 });
+
+export const commentSchema = z.object({
+  id: z.number().optional(),
+  authorId: z.number({ required_error: "Author ID is required" }),
+  authorName: z.string({ required_error: "Author name is required" }),
+  threadId: z.number({ required_error: "Thread ID is required" }),
+  content: z
+    .string({ required_error: "Thread ID is required" })
+    .min(3, "Comment must be at least 3 characters")
+    .max(255, "Comment must not exceed 255 characters"),
+});
