@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     const { title, category, content, authorId, authorName } =
       threadSchema.parse(body); // VALIDATE BODY THRU ZOD SCHEMA
 
-    await prisma.thread.create({
+    const res = await prisma.thread.create({
       data: {
         authorId,
         title,
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(
-      { ok: true, message: "Thread posted" },
+      { ok: true, threadId: res.id, message: "Thread posted" },
       { status: 201 }
     );
   } catch (error) {

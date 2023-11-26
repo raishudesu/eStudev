@@ -31,6 +31,11 @@ export async function GET(req: Request, { params }: { params: Params }) {
             links: true,
           },
         },
+        comments: {
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
       },
     });
 
