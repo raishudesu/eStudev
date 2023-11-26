@@ -34,10 +34,7 @@ const ViewThread = ({ params }: { params: { id: number } }) => {
                   authorName={data.thread.author.username}
                   authorId={data.thread.author.id}
                 />
-                <CommentArea
-                  threadId={data.thread.id}
-                  authorName={data.thread.author.username}
-                />
+                <CommentArea threadId={data.thread.id} />
                 <CommentSection comments={data.thread.comments} />
               </div>
               <AuthorCard author={data.thread.author} />

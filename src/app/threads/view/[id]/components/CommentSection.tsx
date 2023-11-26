@@ -42,6 +42,7 @@ const CommentSection = ({
               key={index}
               id={id as number}
               author={authorName}
+              authorId={authorId}
               content={content}
             />
           )

@@ -29,13 +29,7 @@ const commentFormSchema = z.object({
   content: z.string().min(2, "Comment must be at least 2 characters"),
 });
 
-const CommentForm = ({
-  threadId,
-  authorName,
-}: {
-  threadId: number;
-  authorName: string;
-}) => {
+const CommentForm = ({ threadId }: { threadId: number }) => {
   const queryClient = useQueryClient();
   const [editor, setEditor] = useState(true);
   const session = useSession();
@@ -68,7 +62,7 @@ const CommentForm = ({
       const data = await createComment(
         Number(user?.id),
         threadId,
-        authorName,
+        session.data?.user.username as string,
         values.content
       );
 

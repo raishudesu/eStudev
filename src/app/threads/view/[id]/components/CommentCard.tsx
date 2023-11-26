@@ -12,17 +12,21 @@ import { MessageCircle, Reply, Star } from "lucide-react";
 import { useTheme } from "next-themes";
 import remarkGfm from "remark-gfm";
 import DeleteComment from "./DeleteComment";
+import { useSession } from "next-auth/react";
 
 const CommentCard = ({
   id,
   author,
   content,
+  authorId,
 }: {
   id: number;
   author: string;
   content: string;
+  authorId: number;
 }) => {
   const { theme } = useTheme();
+  const session = useSession();
   return (
     <Card className="w-full">
       <CardHeader>
@@ -55,7 +59,9 @@ const CommentCard = ({
             Reply
           </div>
         </div>
-        <DeleteComment id={id} />
+        {authorId !== Number(session.data?.user.id) ? null : (
+          <DeleteComment id={id} />
+        )}
       </CardFooter>
     </Card>
   );
