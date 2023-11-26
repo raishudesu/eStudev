@@ -10,19 +10,13 @@ import { Editor } from "@tinymce/tinymce-react";
 import React from "react";
 import CommentForm from "./CommentForm";
 
-const CommentArea = ({
-  threadId,
-  authorName,
-}: {
-  threadId: number;
-  authorName: string;
-}) => {
+const CommentArea = ({ threadId }: { threadId: number }) => {
   return (
     <Card className="w-full">
       <CardHeader></CardHeader>
       <CardContent className="flex flex-col gap-6">
         <div className="grid w-full gap-1.5">
-          <CommentForm threadId={threadId} authorName={authorName} />
+          <CommentForm threadId={threadId} />
         </div>
       </CardContent>
     </Card>
