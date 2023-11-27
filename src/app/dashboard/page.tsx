@@ -17,7 +17,7 @@ const DashboardPage = async () => {
   return (
     <div className=" w-full col-span-2 flex flex-col items-start gap-6">
       <div className="w-full flex justify-between items-center flex-wrap">
-        <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+        <h4 className="pl-6 lg:pl-0 scroll-m-20 text-xl font-semibold tracking-tight">
           Your threads
         </h4>
         <Filter />
