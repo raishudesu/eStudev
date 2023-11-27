@@ -3,7 +3,7 @@ import Threads from "./components/Threads";
 
 const ThreadsPage = () => {
   return (
-    <div className="w-full max-w-screen-xl">
+    <div className="w-full max-w-screen-xl mt-6">
       <h2 className="pl-6 lg:pl-0 mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
         Threads
       </h2>
