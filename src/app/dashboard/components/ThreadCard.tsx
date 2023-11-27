@@ -15,6 +15,7 @@ import { useSession } from "next-auth/react";
 import MDEditor from "@uiw/react-md-editor";
 import { useTheme } from "next-themes";
 import remarkGfm from "remark-gfm";
+import { timeAgo } from "@/lib/utils";
 
 const ThreadCard = ({
   id,
@@ -23,6 +24,7 @@ const ThreadCard = ({
   content,
   authorName,
   authorId,
+  createdAt,
 }: TThread) => {
   const { theme } = useTheme();
   const session = useSession();
@@ -36,7 +38,10 @@ const ThreadCard = ({
           </Link>
         </CardTitle>
         <CardDescription className="leading-7">
-          Posted by {authorName}
+          Posted by {authorName} <br />
+          <small className="text-xs text-muted-foreground font-medium leading-none">
+            {timeAgo(createdAt)}
+          </small>
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">

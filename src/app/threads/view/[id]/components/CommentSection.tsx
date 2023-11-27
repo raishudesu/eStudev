@@ -2,6 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import CommentCard from "./CommentCard";
 import { z } from "zod";
 import { commentSchema } from "@/lib/zod";
+import { DateTime } from "luxon";
 
 // const sampleComments = [
 //   {
@@ -26,24 +27,33 @@ import { commentSchema } from "@/lib/zod";
 //   },
 // ];
 
-const CommentSection = ({
-  comments,
-}: {
-  comments: z.infer<typeof commentSchema>[];
-}) => {
+type TComments = {
+  id: number;
+  authorId: number;
+  threadId: number;
+  authorName: string;
+  content: string;
+  createdAt: DateTime;
+};
+
+const CommentSection = ({ comments }: { comments: TComments[] }) => {
   return (
     <div className="w-full flex flex-col gap-6">
       {comments.length === 0 ? (
         <p className="pl-6 lg:pl-0">No comments yet.</p>
       ) : (
         comments.map(
-          ({ id, authorId, threadId, authorName, content }, index) => (
+          (
+            { id, authorId, threadId, authorName, content, createdAt },
+            index
+          ) => (
             <CommentCard
               key={index}
               id={id as number}
               author={authorName}
               authorId={authorId}
               content={content}
+              createdAt={createdAt}
             />
           )
         )

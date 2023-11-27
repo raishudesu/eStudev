@@ -33,6 +33,7 @@ const ViewThread = ({ params }: { params: { id: number } }) => {
                   content={data.thread.content}
                   authorName={data.thread.author.username}
                   authorId={data.thread.author.id}
+                  createdAt={data.thread.createdAt}
                 />
                 <CommentArea threadId={data.thread.id} />
                 <CommentSection comments={data.thread.comments} />
