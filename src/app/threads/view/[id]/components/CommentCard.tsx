@@ -23,10 +23,9 @@ const CommentCard = ({
 }: TComments) => {
   const { theme } = useTheme();
   const session = useSession();
-  const username = session?.data?.user.username;
 
   const getFirstChar = () => {
-    return username?.charAt(0).toUpperCase();
+    return authorName.charAt(0).toUpperCase();
   };
 
   return (
