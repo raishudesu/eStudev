@@ -38,10 +38,10 @@ const CommentCard = ({
             <AvatarFallback>{getFirstChar()}</AvatarFallback>
           </Avatar>
           <small className="text-sm font-medium leading-none">
-            {authorName}
-          </small>
-          <small className="text-xs text-muted-foreground font-medium leading-none">
-            {timeAgo(createdAt)}
+            @{authorName} {" · "}
+            <span className="text-xs text-muted-foreground font-medium leading-none">
+              {timeAgo(createdAt)}
+            </span>
           </small>
         </div>
       </CardHeader>
@@ -53,7 +53,7 @@ const CommentCard = ({
         </div>
       </CardContent>
       <CardFooter className="flex justify-between flex-wrap">
-        <div className="flex gap-6">
+        <div className="flex items-center gap-6">
           <div className="flex items-center gap-1 text-sm font-medium leading-none">
             <Star />
             10
