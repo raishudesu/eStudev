@@ -31,20 +31,20 @@ const ViewThreadCard = ({
 
   return (
     <Card className="w-full">
-      <CardHeader>
+      <CardHeader className="flex flex-col">
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
           {title}
         </CardTitle>
         <CardDescription className="leading-7">
-          Posted by {authorName}
+          @{authorName}
           <br />
           <small className="text-xs text-muted-foreground font-medium leading-none">
             {timeAgo(createdAt)}
           </small>
         </CardDescription>
+        <Badge className="capitalize self-start">{category}</Badge>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
-        <Badge className="capitalize">{category}</Badge>
         <div className="w-full overflow-x-auto">
           <div data-color-mode={theme}>
             <MDEditor.Markdown source={content} remarkPlugins={[remarkGfm]} />

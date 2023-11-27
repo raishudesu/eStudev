@@ -29,3 +29,12 @@ export type TMyCard = {
   author: string;
   image: StaticImageData;
 };
+
+export type TComments = {
+  id: number;
+  authorId: number;
+  threadId: number;
+  authorName: string;
+  content: string;
+  createdAt: DateTime;
+};

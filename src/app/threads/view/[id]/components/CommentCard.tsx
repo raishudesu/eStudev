@@ -2,33 +2,25 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import MDEditor from "@uiw/react-md-editor";
-import { MessageCircle, Reply, Star } from "lucide-react";
+import { Reply, Star } from "lucide-react";
 import { useTheme } from "next-themes";
 import remarkGfm from "remark-gfm";
 import DeleteComment from "./DeleteComment";
 import { useSession } from "next-auth/react";
-import { DateTime } from "luxon";
 import { timeAgo } from "@/lib/utils";
+import { TComments } from "@/types/types";
 
 const CommentCard = ({
   id,
-  author,
+  authorName,
   content,
   authorId,
   createdAt,
-}: {
-  id: number;
-  author: string;
-  content: string;
-  authorId: number;
-  createdAt: DateTime;
-}) => {
+}: TComments) => {
   const { theme } = useTheme();
   const session = useSession();
   const username = session?.data?.user.username;
@@ -45,7 +37,9 @@ const CommentCard = ({
             <AvatarImage />
             <AvatarFallback>{getFirstChar()}</AvatarFallback>
           </Avatar>
-          <small className="text-sm font-medium leading-none">{author}</small>
+          <small className="text-sm font-medium leading-none">
+            {authorName}
+          </small>
           <small className="text-xs text-muted-foreground font-medium leading-none">
             {timeAgo(createdAt)}
           </small>

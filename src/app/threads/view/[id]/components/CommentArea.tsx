@@ -1,12 +1,4 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Editor } from "@tinymce/tinymce-react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import React from "react";
 import CommentForm from "./CommentForm";
 

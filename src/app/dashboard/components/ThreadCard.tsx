@@ -31,21 +31,22 @@ const ThreadCard = ({
   const currUser = session.data?.user;
   return (
     <Card className="w-full">
-      <CardHeader>
+      <CardHeader className="flex flex-col">
         <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
           <Link href={`/threads/view/${id}`} className="hover:underline">
             {title}
           </Link>
         </CardTitle>
         <CardDescription className="leading-7">
-          Posted by {authorName} <br />
+          @{authorName}
+          <br />
           <small className="text-xs text-muted-foreground font-medium leading-none">
             {timeAgo(createdAt)}
           </small>
         </CardDescription>
+        <Badge className="capitalize self-start">{category}</Badge>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 items-start">
-        <Badge className="capitalize">{category}</Badge>
         <div className="max-h-64 w-full overflow-x-auto overflow-y-hidden ">
           <div data-color-mode={theme}>
             <MDEditor.Markdown
