@@ -32,9 +32,9 @@ const CommentSection = ({
   comments: z.infer<typeof commentSchema>[];
 }) => {
   return (
-    <div className="grid gap-6">
+    <div className="w-full flex flex-col gap-6">
       {comments.length === 0 ? (
-        <>No comments yet.</>
+        <p className="pl-6 lg:pl-0">No comments yet.</p>
       ) : (
         comments.map(
           ({ id, authorId, threadId, authorName, content }, index) => (
