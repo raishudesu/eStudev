@@ -23,7 +23,15 @@ const Threads = ({ id }: { id: string }) => {
         data?.userThreads.length !== 0 ? (
           data?.userThreads.map(
             (
-              { id, title, category, content, authorName, authorId }: TThread,
+              {
+                id,
+                title,
+                category,
+                content,
+                authorName,
+                authorId,
+                createdAt,
+              }: TThread,
               index: number
             ) => (
               <ThreadCard
@@ -34,6 +42,7 @@ const Threads = ({ id }: { id: string }) => {
                 content={content}
                 authorName={authorName}
                 authorId={authorId}
+                createdAt={createdAt}
               />
             )
           )

@@ -13,32 +13,42 @@ import { useTheme } from "next-themes";
 import remarkGfm from "remark-gfm";
 import DeleteComment from "./DeleteComment";
 import { useSession } from "next-auth/react";
+import { DateTime } from "luxon";
+import { timeAgo } from "@/lib/utils";
 
 const CommentCard = ({
   id,
   author,
   content,
   authorId,
+  createdAt,
 }: {
   id: number;
   author: string;
   content: string;
   authorId: number;
+  createdAt: DateTime;
 }) => {
   const { theme } = useTheme();
   const session = useSession();
+  const username = session?.data?.user.username;
+
+  const getFirstChar = () => {
+    return username?.charAt(0).toUpperCase();
+  };
+
   return (
     <Card className="w-full">
       <CardHeader>
         <div className="flex items-center gap-3">
           <Avatar>
             <AvatarImage />
-            <AvatarFallback>TS</AvatarFallback>
+            <AvatarFallback>{getFirstChar()}</AvatarFallback>
           </Avatar>
           <small className="text-sm font-medium leading-none">{author}</small>
-          {/* <small className="text-xs text-muted-foreground font-medium leading-none">
-            Posted an hour ago
-          </small> */}
+          <small className="text-xs text-muted-foreground font-medium leading-none">
+            {timeAgo(createdAt)}
+          </small>
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">

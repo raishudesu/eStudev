@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { StaticImageData } from "next/image";
 
 export type TFeatureCard = {
@@ -13,6 +14,7 @@ export type TThread = {
   content: string;
   authorName: string;
   authorId: number;
+  createdAt: DateTime;
 };
 
 export type TAuthor = {
