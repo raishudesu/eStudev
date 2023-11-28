@@ -57,9 +57,13 @@ export async function DELETE(req: Request, { params }: { params: Params }) {
   }
 
   try {
-    await prisma.thread.delete({
+    const deleteComments = prisma.comment.deleteMany({
+      where: { threadId: Number(id) },
+    });
+    const deleteThread = prisma.thread.delete({
       where: { id: Number(id) },
     });
+    await prisma.$transaction([deleteComments, deleteThread]);
 
     return NextResponse.json(
       { ok: true, message: "Thread deleted" },
