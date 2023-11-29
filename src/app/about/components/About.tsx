@@ -10,7 +10,7 @@ import Team from "./Team";
 
 const About = () => {
   return (
-    <Card className="max-w-screen-xl">
+    <Card className="bg-transparent max-w-screen-xl">
       <CardHeader>
         <CardTitle
           className={`scroll-m-20 text-3xl font-bold tracking-tight transition-colors first:mt-0`}
