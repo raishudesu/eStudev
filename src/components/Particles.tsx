@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import MousePosition from "./utils/MousePosition";
-import { useTheme } from "next-themes";
 
 interface ParticlesProps {
   className?: string;
@@ -36,7 +35,6 @@ export const Particles: React.FC<ParticlesProps> = ({
   staticity = 50,
   ease = 50,
   refresh = false,
-  // color = "#ffffff",
   vx = 0,
   vy = 0,
 }) => {
@@ -48,16 +46,6 @@ export const Particles: React.FC<ParticlesProps> = ({
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
-  const [color, setColor] = useState("");
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    if (theme === "dark") {
-      setColor("rgba(255, 255, 255, 0.5)");
-    } else {
-      setColor("rgba(0, 0, 0, 0.5)");
-    }
-  }, [theme]);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -78,7 +66,7 @@ export const Particles: React.FC<ParticlesProps> = ({
 
   useEffect(() => {
     initCanvas();
-  }, [color, refresh]);
+  }, [refresh]);
 
   const initCanvas = () => {
     resizeCanvas();
@@ -130,7 +118,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     const y = Math.floor(Math.random() * canvasSize.current.h);
     const translateX = 0;
     const translateY = 0;
-    const size = Math.floor(Math.random() * 2) + 1;
+    const size = Math.floor(Math.random() * 4) + 1;
     const alpha = 0;
     const targetAlpha = parseFloat((Math.random() * 0.6 + 0.1).toFixed(1));
     const dx = (Math.random() - 0.5) * 0.2;
@@ -150,7 +138,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     };
   };
 
-  // const rgb = hexToRgb(color);
+  const rgb = hexToRgb("#888888");
 
   const drawCircle = (circle: Circle, update = false) => {
     if (context.current) {
@@ -158,7 +146,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       context.current.translate(translateX, translateY);
       context.current.beginPath();
       context.current.arc(x, y, size, 0, 2 * Math.PI);
-      context.current.fillStyle = color;
+      context.current.fillStyle = `rgba(${rgb.join(", ")}, ${alpha})`;
       context.current.fill();
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
 
