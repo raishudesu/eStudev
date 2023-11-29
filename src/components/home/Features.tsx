@@ -1,11 +1,25 @@
 import { featureList } from "@/lib/data";
 import FeatureCard from "./FeatureCard";
-import { headingGradient } from "./Hero";
-
+import Image from "next/image";
+import GlowTop from "@/assets/glow-top.svg";
 const Features = () => {
   return (
-    <div className="pt-20 w-full max-w-screen-xl">
-      <div className="flex flex-col text-center justify-center gap-3">
+    <div className="relative py-20 w-full max-w-screen-xl">
+      <div
+        className="absolute inset-0 -z-10 -mx-28 rounded-t-[3rem] pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10">
+          <Image
+            src={GlowTop}
+            className="max-w-none ml-24 opacity-10 dark:opacity-30"
+            width={1404}
+            height={658}
+            alt="Features Illustration"
+          />
+        </div>
+      </div>
+      <div className="flex flex-col text-center justify-center gap-3 px-6">
         <h2
           className={`scroll-m-20 text-3xl font-bold tracking-tight transition-colors first:mt-0`}
         >
