@@ -10,13 +10,13 @@ const HomeCardBtns = () => {
     <>
       <Button
         onClick={() => router.push("/dashboard/create-thread")}
-        className="self-stretch md:self-start"
+        className="w-full"
       >
         Create thread
       </Button>
       <Button
         onClick={() => router.push("/dashboard")}
-        className="self-stretch md:self-start"
+        className="w-full "
         variant={"secondary"}
       >
         Dashboard

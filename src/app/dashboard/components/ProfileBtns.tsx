@@ -18,16 +18,18 @@ const ProfileBtns = () => {
     );
   return (
     <>
-      <Button
-        onClick={() => router.push("/dashboard/create-thread")}
-        className="self-stretch md:self-start"
-      >
-        Create thread
-      </Button>
-      <Button variant={"secondary"} className="self-stretch md:self-start">
-        Edit profile
-      </Button>
-      <Button variant={"outline"} className="self-stretch md:self-start">
+      <div className="flex gap-3">
+        <Button
+          onClick={() => router.push("/dashboard/create-thread")}
+          className="w-full"
+        >
+          Create thread
+        </Button>
+        <Button variant={"secondary"} className="w-full">
+          Edit profile
+        </Button>
+      </div>
+      <Button variant={"ghost"} className="self-start">
         <Share2 size={15} />
       </Button>
     </>

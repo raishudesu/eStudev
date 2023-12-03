@@ -8,13 +8,13 @@ const HeroBtns = () => {
   return (
     <>
       <Button
-        className="self-stretch md:self-start"
+        className="justify-self-stretch md:justify-self-end "
         onClick={() => router.push("/sign-in")}
       >
         Get started
       </Button>
       <Button
-        className="self-stretch md:self-start"
+        className="justify-items-stretch md:justify-self-start"
         onClick={() => router.push("/threads")}
         variant={"secondary"}
       >
