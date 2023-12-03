@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     const { keywords } = searchSchema.parse(body);
     const words = keywords.trim().replace(/\s+/g, " | ");
 
-    const result = await prisma.thread.findMany({
+    const threads = await prisma.thread.findMany({
       where: {
         title: {
           search: words,
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ ok: true, result: result }, { status: 200 });
+    return NextResponse.json({ ok: true, threads }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ ok: false, error }, { status: 500 });
   }
