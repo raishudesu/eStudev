@@ -8,5 +8,6 @@ export const config = {
     "/dashboard/create-thread",
     "/threads",
     "/threads/view/(.*)",
+    "/search/(.*)",
   ],
 }; // INCLUDE PROTECTED ROUTES HERE

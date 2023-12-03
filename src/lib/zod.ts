@@ -93,3 +93,9 @@ export const commentSchema = z.object({
     .min(3, "Comment must be at least 3 characters")
     .max(255, "Comment must not exceed 255 characters"),
 });
+
+export const searchSchema = z.object({
+  keywords: z
+    .string({ required_error: "Keywords are required" })
+    .min(3, "Keywords must be at least 3 characters."),
+});

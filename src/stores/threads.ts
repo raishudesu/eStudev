@@ -24,6 +24,7 @@ export const createThread = async (
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
@@ -36,6 +37,7 @@ export const getThreads = async () => {
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
@@ -48,6 +50,7 @@ export const getThread = async (id: number) => {
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
@@ -60,6 +63,7 @@ export const getUserThreads = async (id: string) => {
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
@@ -73,5 +77,25 @@ export const deleteThread = async (id: number) => {
     return data;
   } catch (error) {
     console.log(error);
+    return error;
+  }
+};
+
+export const searchThreads = async (query: string) => {
+  try {
+    const res = await fetch("/api/search", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        keywords: query,
+      }),
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error;
   }
 };

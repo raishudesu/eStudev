@@ -14,6 +14,7 @@ import NavMenu from "./NavMenu";
 import AuthBtns from "./AuthBtns";
 import SearchBtn from "./SearchBtn";
 import { Separator } from "./ui/separator";
+import SearchDialog from "@/app/search/[query]/components/SearchDialog";
 
 const Sidebar = () => {
   return (
@@ -34,7 +35,7 @@ const Sidebar = () => {
         </SheetHeader>
         <Separator />
         <div className="w-full flex flex-col gap-3">
-          <SearchBtn />
+          <SearchDialog />
           <NavMenu />
           <Separator />
           <AuthBtns />

@@ -1,10 +1,6 @@
 import prisma from "@/lib/db";
+import { searchSchema } from "@/lib/zod";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const searchSchema = z.object({
-  keywords: z.string({ required_error: "Keywords are required" }),
-});
 
 export async function POST(req: Request) {
   try {
@@ -20,6 +16,9 @@ export async function POST(req: Request) {
         content: {
           search: words,
         },
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
 

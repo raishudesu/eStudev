@@ -2,11 +2,11 @@ import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 import NavMenu from "./NavMenu";
 import Sidebar from "./SideBar";
-import SearchBtn from "./SearchBtn";
 import gearsLogo from "@/assets/gear-logo.svg";
 import Image from "next/image";
 import UserDropdown from "./UserDropdown";
 import ShowAuthBtns from "./ShowAuthBtns";
+import SearchDialog from "@/app/search/[query]/components/SearchDialog";
 
 const Header = () => {
   return (
@@ -27,7 +27,7 @@ const Header = () => {
           </div>
         </div>
         <div className="hidden md:flex gap-3 items-center">
-          <SearchBtn />
+          <SearchDialog />
           <UserDropdown />
           <ShowAuthBtns />
           <ModeToggle />
