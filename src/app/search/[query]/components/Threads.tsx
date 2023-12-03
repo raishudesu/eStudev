@@ -31,30 +31,34 @@ const Threads = ({ query }: { query: string }) => {
       <div className="w-full flex flex-col gap-6">
         <Separator />
         {!isFetching && isSuccess ? (
-          data?.threads.map(
-            (
-              {
-                id,
-                title,
-                category,
-                content,
-                authorName,
-                authorId,
-                createdAt,
-              }: TThread,
-              index: number
-            ) => (
-              <ThreadCard
-                id={id}
-                key={index}
-                title={title}
-                category={category}
-                content={content}
-                authorName={authorName}
-                authorId={authorId}
-                createdAt={createdAt}
-              />
+          data?.threads.length !== 0 ? (
+            data?.threads.map(
+              (
+                {
+                  id,
+                  title,
+                  category,
+                  content,
+                  authorName,
+                  authorId,
+                  createdAt,
+                }: TThread,
+                index: number
+              ) => (
+                <ThreadCard
+                  id={id}
+                  key={index}
+                  title={title}
+                  category={category}
+                  content={content}
+                  authorName={authorName}
+                  authorId={authorId}
+                  createdAt={createdAt}
+                />
+              )
             )
+          ) : (
+            <>No results.</>
           )
         ) : (
           <>
