@@ -10,13 +10,15 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { keywords } = searchSchema.parse(body);
+    const words = keywords.trim().replace(/\s+/g, " | ");
+
     const result = await prisma.thread.findMany({
       where: {
         title: {
-          search: keywords.trim().replace(/\s+/g, " | "),
+          search: words,
         },
         content: {
-          search: keywords.trim().replace(/\s+/g, " | "),
+          search: words,
         },
       },
     });
