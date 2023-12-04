@@ -10,13 +10,19 @@ import Image from "next/image";
 
 const FeatureCard = ({ icon, characteristic, description }: TFeatureCard) => {
   return (
-    <Card className="relative bg-transparent shadow-md hover:shadow-[#FACC15] transition ease-in-out duration-300 overflow-hidden">
+    <Card
+      className={`relative group bg-transparent overflow-hidden hover:border-gray-500 transition ease-in-out duration-200 `}
+    >
       <div
         className="absolute inset-0 -z-10 -mx-28 rounded-t-[3rem] pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
         <div className="absolute top-0 -z-10">
-          <Image src={maze} className="opacity-20 dark:opacity-50" alt="maze" />
+          <Image
+            src={maze}
+            className="opacity-20 dark:opacity-30 group-hover:opacity-50 dark:group-hover:opacity-80 transition ease-in-out duration-300 "
+            alt="maze"
+          />
         </div>
       </div>
       <CardHeader>

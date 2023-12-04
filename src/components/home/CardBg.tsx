@@ -11,7 +11,7 @@ const CardBg = () => {
   return (
     <>
       {theme === "dark" ? (
-        <Image src={mazeDark} className="opacity-20" alt="maze" />
+        <Image src={mazeDark} className="opacity-50" alt="maze" />
       ) : (
         <Image src={mazeLight} className="opacity-10" alt="maze" />
       )}
