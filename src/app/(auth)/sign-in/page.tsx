@@ -3,8 +3,8 @@ import SignInForm from "../components/SigninForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign in | Thinksync",
-  description: "Sign in to ThinkSync",
+  title: "Sign in | eStudev",
+  description: "Sign in to eStudev",
 };
 
 const SigninCard = () => {

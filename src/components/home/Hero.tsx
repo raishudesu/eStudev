@@ -12,11 +12,11 @@ const Hero = () => {
         <h1
           className={`scroll-m-20 text-5xl font-extrabold tracking-tight lg:text-6xl ${headingGradient}`}
         >
-          Empowering Students Through Community-Based Learning
+          Uniting Student Developers through a Community Platform
         </h1>
         <p className="leading-7">
-          Discover a supportive network of peers and professionals to elevate
-          your tech skills and career aspirations.
+          Discover a collaborative network of student developers to elevate your
+          development skills and tech career aspirations.
         </p>
         <div className="w-full grid grid-cols-2 gap-3">
           <HeroBtns />

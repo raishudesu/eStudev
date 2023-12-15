@@ -29,9 +29,7 @@ const SearchDialog = () => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Search</DialogTitle>
-          <DialogDescription>
-            Search thread and other thinkers
-          </DialogDescription>
+          <DialogDescription>Search threads</DialogDescription>
         </DialogHeader>
         <search className="flex items-center space-x-2">
           <SearchForm setOpen={setOpen} />

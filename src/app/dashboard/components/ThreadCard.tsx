@@ -66,14 +66,13 @@ const ThreadCard = ({
       <CardFooter className="flex justify-between">
         <div className="flex gap-6">
           <div className="flex items-center gap-1 text-sm font-medium leading-none">
-            <Star />
-            10
+            <Star size={20} />
           </div>
           <div className="flex items-center gap-1 text-sm font-medium leading-none">
-            <MessageCircle />5
+            <MessageCircle size={20} />
           </div>
-          <Share2 />
-          <BookMarked />
+          <Share2 size={20} />
+          <BookMarked size={20} />
         </div>
         {Number(currUser?.id) === authorId ? (
           <div className="flex gap-3">

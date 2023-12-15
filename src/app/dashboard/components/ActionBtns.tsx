@@ -15,7 +15,7 @@ const ActionBtns = ({ id }: { id: number }) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size={"sm"} variant={"ghost"}>
-          <MoreVertical />
+          <MoreVertical size={20} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="px-2 max-w-56">

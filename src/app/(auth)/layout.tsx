@@ -19,7 +19,7 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
             <div className="relative z-20 flex items-center text-lg font-medium gap-1">
               <Image src={gear} alt="gear-logo" className="h-6 w-6" />
               <span>
-                Think<span className="text-yellow-500">sync</span>
+                eStu<span className="text-yellow-500">dev</span>
               </span>
             </div>
             <div className="relative z-20 pt-20 flex items-center text-lg font-medium gap-1">
@@ -28,11 +28,12 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
             <div className="relative z-20 mt-auto">
               <blockquote className="space-y-2">
                 <p className="text-lg">
-                  &ldquo;We strongly advocate for the transformative potential
-                  of collaboration within the technology development
-                  ecosystem.&rdquo;
+                  &ldquo;We&apos;re all about teamwork for student developers.
+                  We keep it simple: clear communication means better projects
+                  and more fun. Join us and let&apos;s build awesome stuff
+                  together!&rdquo;
                 </p>
-                <footer className="text-sm">Thinksync Team</footer>
+                <footer className="text-sm">eStudev Team</footer>
               </blockquote>
             </div>
           </div>

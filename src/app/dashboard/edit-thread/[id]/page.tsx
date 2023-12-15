@@ -2,7 +2,7 @@ import EditThread from "../../components/EditThread";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Edit thread | Thinksync",
+  title: "Edit thread | eStudev",
 };
 const EditThreadPage = ({ params }: { params: { id: number } }) => {
   return (

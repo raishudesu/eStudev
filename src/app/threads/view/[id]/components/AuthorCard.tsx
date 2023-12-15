@@ -41,9 +41,19 @@ const AuthorCard = ({ author }: { author: TAuthor }) => {
           <div>
             <p className="leading-7 [&:not(:first-child)]:mt-6">{bio}</p>
           </div>
-          <Link href={""} className="text-blue-500">
-            {links}
-          </Link>
+          <div className="flex flex-col gap-3">
+            <small className=" text-sm font-medium leading-none">Links:</small>
+            {user?.links?.map((link, index) => (
+              <Link
+                key={index}
+                href={link}
+                target="_blank"
+                className="text-blue-500"
+              >
+                {link}
+              </Link>
+            ))}
+          </div>
           {id == user?.id ? null : (
             <div className="flex flex-col md:flex-row gap-3">
               <Button className="self-stretch md:self-start">Follow</Button>

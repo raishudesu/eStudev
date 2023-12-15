@@ -23,7 +23,7 @@ const Community = () => {
         <h2
           className={`scroll-m-20 text-3xl font-bold tracking-tight transition-colors first:mt-0`}
         >
-          Foster a culture of collaboration
+          Foster a Culture of Collaboration 🤝
         </h2>
         <p className="leading-7 text-md">
           Connect with fellow students, share your insights, and grow your

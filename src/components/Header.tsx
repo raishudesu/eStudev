@@ -17,9 +17,9 @@ const Header = () => {
             href={"/"}
             className="flex gap-1 items-center scroll-m-20 text-xl font-bold tracking-tight transition-colors first:mt-0"
           >
-            <Image src={gearsLogo} alt="gears-logl" className="max-w-[30px]" />
+            <Image src={gearsLogo} alt="gears-logl" className="max-w-[25px]" />
             <div>
-              think<span className="text-yellow-500">sync</span>
+              eStu<span className="text-yellow-500">dev</span>
             </div>
           </Link>
           <div className="hidden md:block">

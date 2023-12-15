@@ -14,9 +14,9 @@ const inter = Inter({ subsets: ["latin"] });
 const openGraphImage = { images: ["https://i.imgur.com/6eglj0f.png"] };
 
 export const metadata: Metadata = {
-  title: "ThinkSync",
+  title: "eStudev",
   description:
-    "Discover a supportive network of peers and professionals to elevate your tech skills and career aspirations.",
+    "Discover a collaborative network of student developers to elevate your development skills and tech career aspirations.",
   openGraph: {
     ...openGraphImage,
   },

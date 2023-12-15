@@ -3,8 +3,8 @@ import RegisterForm from "../components/RegisterForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Register | Thinksync",
-  description: "Register to ThinkSync",
+  title: "Register | eStudev",
+  description: "Register to eStudev",
 };
 const SigninCard = () => {
   return (

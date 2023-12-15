@@ -7,7 +7,7 @@ import { CardSkeletons } from "@/components/Skeletons";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dasboard | Thinksync",
+  title: "Dasboard | eStudev",
 };
 
 const DashboardPage = async () => {

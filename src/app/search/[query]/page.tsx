@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Threads from "./components/Threads";
 
 export const metadata: Metadata = {
-  title: "Search | Thinksync",
+  title: "Search | eStudev",
 };
 
 const SearchPage = ({ params }: { params: { query: string } }) => {

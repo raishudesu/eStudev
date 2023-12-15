@@ -66,11 +66,21 @@ const Profile = () => {
                   {user.bio ? user.bio : <>Add your bio</>}
                 </p>
               </div>
-              {user?.links?.map((link, index) => (
-                <Link key={index} href={""} className="text-blue-500">
-                  {link}
-                </Link>
-              ))}
+              <div className="flex flex-col gap-3">
+                <small className=" text-sm font-medium leading-none">
+                  Links:
+                </small>
+                {user?.links?.map((link, index) => (
+                  <Link
+                    key={index}
+                    href={link}
+                    target="_blank"
+                    className="text-blue-500"
+                  >
+                    {link}
+                  </Link>
+                ))}
+              </div>
               <div className="flex flex-col gap-3">
                 <ProfileBtns />
               </div>
