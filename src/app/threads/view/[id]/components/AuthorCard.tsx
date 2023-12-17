@@ -29,6 +29,7 @@ const AuthorCard = ({ author }: { author: TAuthor }) => {
             src={maleAvatar}
             alt="male-avatar"
             className="self-center max-w-[16rem]"
+            priority
           />
           <CardDescription className="flex flex-col">
             <span className="text-foreground scroll-m-20 text-2xl font-semibold tracking-tight">

@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import maleAvatar from "@/assets/male-avatar.svg";
 
 const AvatarIcon = async () => {
   const session = await getServerSession(authOptions);
@@ -11,7 +12,7 @@ const AvatarIcon = async () => {
   };
   return (
     <Avatar>
-      <AvatarImage />
+      <AvatarImage src="https://i.imgur.com/ghzTF6W.png" alt="male-avatar" />
       <AvatarFallback>{getFirstChar()}</AvatarFallback>
     </Avatar>
   );

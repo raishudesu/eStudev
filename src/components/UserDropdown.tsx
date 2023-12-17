@@ -23,7 +23,7 @@ const UserDropdown = async () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={"ghost"} className="p-0 rounded-full">
+        <Button variant={"secondary"} className="p-0 rounded-full">
           <AvatarIcon />
         </Button>
       </DropdownMenuTrigger>
