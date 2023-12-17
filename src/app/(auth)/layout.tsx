@@ -4,8 +4,8 @@ import { ReactNode } from "react";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
-import gear from "@/assets/gear-logo.svg";
 import FormLabel from "./components/FormLabel";
+import { Code2 } from "lucide-react";
 
 const AuthLayout = async ({ children }: { children: ReactNode }) => {
   const session = await getServerSession(authOptions);
@@ -17,7 +17,7 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
           <div className="relative hidden h-full flex-col bg-muted p-10 text-foreground dark:border-r lg:flex">
             <div className="absolute inset-0 bg-card" />
             <div className="relative z-20 flex items-center text-lg font-medium gap-1">
-              <Image src={gear} alt="gear-logo" className="h-6 w-6" />
+              <Code2 className="text-yellow-500" />
               <span>
                 eStu<span className="text-yellow-500">dev</span>
               </span>

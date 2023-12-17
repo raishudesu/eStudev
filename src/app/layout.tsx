@@ -11,7 +11,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const openGraphImage = { images: ["https://i.imgur.com/6FMLkjJ.png"] };
+const openGraphImage = { images: ["https://i.imgur.com/z5FuMgF.png"] };
 
 export const metadata: Metadata = {
   title: "eStudev",

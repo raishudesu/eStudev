@@ -2,11 +2,10 @@ import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 import NavMenu from "./NavMenu";
 import Sidebar from "./SideBar";
-import gearsLogo from "@/assets/gear-logo.svg";
-import Image from "next/image";
 import UserDropdown from "./UserDropdown";
 import ShowAuthBtns from "./ShowAuthBtns";
 import SearchDialog from "@/app/search/[query]/components/SearchDialog";
+import { Code2 } from "lucide-react";
 
 const Header = () => {
   return (
@@ -17,7 +16,7 @@ const Header = () => {
             href={"/"}
             className="flex gap-1 items-center scroll-m-20 text-xl font-bold tracking-tight transition-colors first:mt-0"
           >
-            <Image src={gearsLogo} alt="gears-logl" className="max-w-[25px]" />
+            <Code2 className="text-yellow-500" />
             <div>
               eStu<span className="text-yellow-500">dev</span>
             </div>
