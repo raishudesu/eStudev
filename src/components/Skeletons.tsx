@@ -24,7 +24,7 @@ export const TextSkeletons = () => {
 export const CardSkeletons = () => {
   return (
     <div className="w-full flex items-center space-x-4 col-span-2">
-      <Skeleton className="h-32 w-64 rounded-full" />
+      <Skeleton className="h-32 w-64 rounded-full " />
       <div className="w-full space-y-2">
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-[80%]" />
