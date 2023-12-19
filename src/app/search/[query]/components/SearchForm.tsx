@@ -1,3 +1,5 @@
+"use client";
+
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -16,11 +18,7 @@ import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-const SearchForm = ({
-  setOpen,
-}: {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+const SearchForm = () => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof searchSchema>>({
@@ -32,14 +30,14 @@ const SearchForm = ({
 
   const onSubmit = async (values: z.infer<typeof searchSchema>) => {
     router.push(`/search/${values.keywords}`);
-    setOpen(false);
+    // setOpen(false);
   };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex gap-3"
+        className="w-full flex gap-3 items-center"
       >
         <FormField
           control={form.control}
@@ -50,14 +48,20 @@ const SearchForm = ({
                 <Input
                   placeholder="Search here..."
                   {...field}
-                  className="w-full"
+                  className="w-full border-none"
+                  autoComplete="off"
                 />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="" type="submit">
+        <Button
+          className="mr-1"
+          variant={"secondary"}
+          size={"sm"}
+          type="submit"
+        >
           <Search className="h-4 w-4" />
         </Button>
       </form>

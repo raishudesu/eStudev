@@ -31,9 +31,9 @@ const SearchDialog = () => {
           <DialogTitle>Search</DialogTitle>
           <DialogDescription>Search threads</DialogDescription>
         </DialogHeader>
-        <search className="flex items-center space-x-2">
+        {/* <search className="flex items-center space-x-2">
           <SearchForm setOpen={setOpen} />
-        </search>
+        </search> */}
       </DialogContent>
     </Dialog>
   );

@@ -6,6 +6,8 @@ import UserDropdown from "./UserDropdown";
 import ShowAuthBtns from "./ShowAuthBtns";
 import SearchDialog from "@/app/search/[query]/components/SearchDialog";
 import { Code2 } from "lucide-react";
+import SearchForm from "@/app/search/[query]/components/SearchForm";
+import SearchBar from "@/app/search/[query]/components/SearchBar";
 
 const Header = () => {
   return (
@@ -26,7 +28,8 @@ const Header = () => {
           </div>
         </div>
         <div className="hidden md:flex gap-3 items-center">
-          <SearchDialog />
+          {/* <SearchDialog /> */}
+          <SearchBar />
           <UserDropdown />
           <ShowAuthBtns />
           <ModeToggle />

@@ -20,7 +20,7 @@ const SubFooter = () => {
         </div>
         <Separator />
         <small className="text-sm font-medium leading-none">
-          ThinkSync © 2023. All rights reserved.
+          eStudev © 2023. All rights reserved.
         </small>
       </CardContent>
     </Card>

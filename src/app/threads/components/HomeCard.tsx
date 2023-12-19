@@ -15,7 +15,7 @@ const HomeCard = () => {
       <CardHeader className="flex flex-col">
         <CardTitle>Home</CardTitle>
         <CardDescription className="flex flex-col">
-          Your personal ThinkSync homepage. Come here to collaborate with other
+          Your personal eStudev homepage. Come here to collaborate with other
           students.
         </CardDescription>
       </CardHeader>

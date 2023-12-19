@@ -3,7 +3,7 @@ import About from "./components/About";
 import { Particles } from "@/components/Particles";
 
 export const metadata: Metadata = {
-  title: "About | Thinksync",
+  title: "About | eStudev",
 };
 
 const AboutPage = () => {
